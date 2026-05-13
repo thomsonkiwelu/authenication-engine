@@ -1,0 +1,46 @@
+﻿using conservation_backend.Features.Permissions;
+using conservation_backend.Features.Users;
+using conservation_backend.Shared;
+using System.ComponentModel.DataAnnotations;
+
+namespace conservation_backend.Features.Roles
+{
+    public class Role : BaseEntity
+    {
+        public Guid Id { get; set; } = Guid.NewGuid();
+
+        [MaxLength(255)]
+        public string Name { get; set; } = string.Empty;
+        
+        [MaxLength(255)]
+        public string Slug { get; set; } = string.Empty;
+
+        public string Description { get; set; } = string.Empty;
+    }
+
+    public class RolePermission : BaseEntity
+    {
+        [MaxLength(255)]
+        public string ModuleName { get; set; } = string.Empty;
+        
+        public Guid RoleId { get; set; }
+
+        public Guid PermissionId {  get; set; }
+
+        public Role Role { get; set; } = null!;
+
+        public PermissionEntity Permission { get; set; } = null!;
+    }
+
+    public class RoleUser : BaseEntity
+    {
+        public Guid RoleId { get; set; }
+
+        public Guid UserId { get; set; }
+
+        public Role Role { get; set; } = null!;
+
+        public User User { get; set; } = null!;
+    }
+
+}
