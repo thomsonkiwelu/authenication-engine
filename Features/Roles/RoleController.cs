@@ -16,7 +16,7 @@ namespace authentication_engine.Features.Roles
         [ProducesResponseType(typeof(ResponseWithPagination<List<RoleDto>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetRoles(
-            [FromQuery] PaginationDto dto
+            [FromQuery] RolePaginationDto dto
         )
         {
             var pagedResult = await _roleService.GetAllRolesData(dto);

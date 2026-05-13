@@ -8,14 +8,14 @@ namespace authentication_engine.Features.SystemApplications
     [Authorize]
     [ApiController]
     [Route("api/system-applications")]
-    public class RankController(ISystemApplicationService systemApplicationService) : ControllerBase
+    public class SystemApplicationController(ISystemApplicationService systemApplicationService) : ControllerBase
     {
         private readonly ISystemApplicationService _systemApplicationService = systemApplicationService;
 
         [HttpGet]
         [ProducesResponseType(typeof(ResponseWithPagination<List<SystemApplicationDto>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetAll([FromQuery] PaginationDto dto)
+        public async Task<IActionResult> GetAllData([FromQuery] PaginationDto dto)
         {
             var pagedResult = await _systemApplicationService.GetAllSystemApplications(dto);
 

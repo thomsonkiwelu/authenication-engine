@@ -15,7 +15,7 @@ public class StationController(IStationService stationService) : ControllerBase
     [HttpGet]
     [ProducesResponseType(typeof(ResponseWithPagination<List<StationResponseDto>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> GetAllLocations([FromQuery] StationPaginationDto dto)
+    public async Task<IActionResult> GetAllStations([FromQuery] StationPaginationDto dto)
     {
         var pagedResult = await _stationService.GetAllStationsData(dto);
 

@@ -10,7 +10,7 @@ namespace authentication_engine.Features.Roles
 
         private readonly IMapper _mapper = mapper;
 
-        public async Task<PagedList<RoleResponseDto>> GetAllRolesData(PaginationDto dto)
+        public async Task<PagedList<RoleResponseDto>> GetAllRolesData(RolePaginationDto dto)
         {
             var pagedData = await _roleRepository.GetPagedData(dto);
 

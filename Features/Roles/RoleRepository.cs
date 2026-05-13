@@ -11,16 +11,23 @@ namespace authentication_engine.Features.Roles
         private readonly AppDBContext _context = context;
         private readonly IUserContext _userContext = userContext;
 
-        public async Task<PagedList<Role>> GetPagedData(PaginationDto dto)
+        public async Task<PagedList<Role>> GetPagedData(RolePaginationDto dto)
         {
             string[] searchColumns = new string[] { "Name" };
-            var query = _context.Roles.AsNoTracking().AsQueryable();
+            var query = _context.Roles
+                .Include(s => s.SystemApplication)
+                .Include(c => c.Creator)
+                .Include(u => u.Updater)
+                .AsNoTracking().AsQueryable();
 
             //Apply search filter
             query = ApplyFilters<Role>.ApplySearch(query, dto.q ?? "", searchColumns);
 
             //Apply sorting filter
             query = ApplyFilters<Role>.ApplySorting(query, dto.sortBy, dto.sortDesc);
+            
+            if (!string.IsNullOrWhiteSpace(dto.SystemApplicationId))
+                query = query.Where(v => v.SystemApplicationId == Guid.Parse(dto.SystemApplicationId));
 
             return await PagedList<Role>.CreateAsync(query, dto.page, dto.pageSize);
         }
@@ -60,7 +67,6 @@ namespace authentication_engine.Features.Roles
 
         public async Task<Role> Update(Guid id, Role role)
         {
-            //INFO: it need to be revamp
             var existingRole = await _context.Roles.FindAsync(id);
 
             if (existingRole is null)

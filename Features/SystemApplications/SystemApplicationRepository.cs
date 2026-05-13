@@ -13,7 +13,10 @@ namespace authentication_engine.Features.SystemApplications
         public async Task<PagedList<SystemApplication>> GetPagedData(PaginationDto dto)
         {
             string[] searchColumns = new string[] { "Name" };
-            var query = _context.SystemApplications.AsNoTracking().AsQueryable();
+            var query = _context.SystemApplications
+                .Include(c => c.Creator)
+                .Include(u => u.Updater)
+                .AsNoTracking().AsQueryable();
 
             //Apply search filter
             query = ApplyFilters<SystemApplication>.ApplySearch(query, dto.q ?? "", searchColumns);

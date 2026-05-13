@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36301.6 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "authenication-engine", "authenication-engine.csproj", "{DEA3F3C6-4C6E-4B69-AA46-13B216709667}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "authentication-engine", "authentication-engine.csproj", "{DEA3F3C6-4C6E-4B69-AA46-13B216709667}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

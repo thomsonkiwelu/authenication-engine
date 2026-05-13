@@ -4,7 +4,7 @@ namespace authentication_engine.Features.Roles.Interfaces
 {
     public interface IRoleService
     {
-        Task<PagedList<RoleResponseDto>> GetAllRolesData(PaginationDto dto);
+        Task<PagedList<RoleResponseDto>> GetAllRolesData(RolePaginationDto dto);
 
         Task<RoleDto> CreateRoles(RoleRequest dto);
 

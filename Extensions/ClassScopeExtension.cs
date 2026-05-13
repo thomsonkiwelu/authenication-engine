@@ -32,6 +32,8 @@ using authentication_engine.Features.Stations;
 using authentication_engine.Features.Stations.Interfaces;
 using authentication_engine.Features.Structure;
 using authentication_engine.Features.Structure.Interfaces;
+using authentication_engine.Features.SystemApplications;
+using authentication_engine.Features.SystemApplications.Interfaces;
 using authentication_engine.Features.SystemModules;
 using authentication_engine.Features.SystemModules.Interfaces;
 using authentication_engine.Features.Units;
@@ -86,6 +88,7 @@ namespace authentication_engine.Extensions
             services.AddScoped<ILessRangerStationRepository, LessRangerStationRepository>();
             services.AddScoped<ILessRangerGroupRepository, LessRangerGroupRepository>();
             services.AddScoped<ILessStaffPostingRepository, LessStaffPostingRepository>();
+            services.AddScoped<ISystemApplicationRepository, SystemApplicationRepository>();
 
             // Service
             services.AddScoped<IRoleService, RoleService>();
@@ -108,6 +111,7 @@ namespace authentication_engine.Extensions
             services.AddScoped<ILessRangerStationService, LessRangerStationService>();
             services.AddScoped<ILessRangerGroupService, LessRangerGroupService>();
             services.AddScoped<ILessStaffPostingService, LessStaffPostingService>();
+            services.AddScoped<ISystemApplicationService, SystemApplicationService>();
 
             // Validator
             services.AddScoped<IValidator<RoleRequest>, RoleValidator>();

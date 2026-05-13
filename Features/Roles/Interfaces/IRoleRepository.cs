@@ -5,7 +5,7 @@ namespace authentication_engine.Features.Roles.Interfaces
 {
     public interface IRoleRepository
     {
-        Task<PagedList<Role>> GetPagedData(PaginationDto dto);
+        Task<PagedList<Role>> GetPagedData(RolePaginationDto dto);
 
         Task<Role> Create(Role role);
 

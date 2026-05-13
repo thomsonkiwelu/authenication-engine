@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using authentication_engine.Features.Permissions;
+using authentication_engine.Features.SystemApplications;
 using authentication_engine.Features.Users;
 using authentication_engine.Shared.Entities;
 
@@ -14,8 +15,12 @@ namespace authentication_engine.Features.Roles
         
         [MaxLength(255)]
         public string Slug { get; set; } = string.Empty;
-
+        
+        [MaxLength(100)]
         public string Description { get; set; } = string.Empty;
+        
+        public SystemApplication? SystemApplication { get; set; } = null;
+        public Guid? SystemApplicationId { get; set; }
     }
 
     public class RolePermission : BaseEntity
