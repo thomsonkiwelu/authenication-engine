@@ -151,16 +151,6 @@ namespace conservation_backend.Migrations
                 column: "UpdatedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Locations_CreatedBy",
-                table: "Locations",
-                column: "CreatedBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Locations_UpdatedBy",
-                table: "Locations",
-                column: "UpdatedBy");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_DepartmentStaffs_CreatedBy",
                 table: "DepartmentStaffs",
                 column: "CreatedBy");
@@ -233,22 +223,6 @@ namespace conservation_backend.Migrations
             migrationBuilder.AddForeignKey(
                 name: "FK_DepartmentStaffs_Users_UpdatedBy",
                 table: "DepartmentStaffs",
-                column: "UpdatedBy",
-                principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Locations_Users_CreatedBy",
-                table: "Locations",
-                column: "CreatedBy",
-                principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Locations_Users_UpdatedBy",
-                table: "Locations",
                 column: "UpdatedBy",
                 principalTable: "Users",
                 principalColumn: "Id",
@@ -507,14 +481,6 @@ namespace conservation_backend.Migrations
                 table: "DepartmentStaffs");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Locations_Users_CreatedBy",
-                table: "Locations");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Locations_Users_UpdatedBy",
-                table: "Locations");
-
-            migrationBuilder.DropForeignKey(
                 name: "FK_Offices_Users_CreatedBy",
                 table: "Offices");
 
@@ -737,14 +703,6 @@ namespace conservation_backend.Migrations
             migrationBuilder.DropIndex(
                 name: "IX_Offices_UpdatedBy",
                 table: "Offices");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Locations_CreatedBy",
-                table: "Locations");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Locations_UpdatedBy",
-                table: "Locations");
 
             migrationBuilder.DropIndex(
                 name: "IX_DepartmentStaffs_CreatedBy",
