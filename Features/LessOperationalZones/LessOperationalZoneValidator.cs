@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace conservation_backend.Features.LessOperationalZones;
+namespace authentication_engine.Features.LessOperationalZones;
 
 public class LessOperationalZoneValidator : AbstractValidator<LessOperationalZoneRequest>
 {

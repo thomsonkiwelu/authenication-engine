@@ -1,6 +1,6 @@
-﻿using conservation_backend.Config;
+﻿using authentication_engine.Config;
 
-namespace conservation_backend.Data.Seeders
+namespace authentication_engine.Data.Seeders
 {
     public interface IBaseSeeder
     {

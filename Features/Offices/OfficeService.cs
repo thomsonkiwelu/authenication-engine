@@ -1,8 +1,8 @@
-﻿using conservation_backend.Features.Offices.Interface;
-using conservation_backend.Shared;
+﻿using authentication_engine.Features.Offices.Interface;
+using authentication_engine.Shared;
 using MapsterMapper;
 
-namespace conservation_backend.Features.Offices
+namespace authentication_engine.Features.Offices
 {
     public class OfficeService(IOfficeRepository repository, IMapper mapper): IOfficeService
     {

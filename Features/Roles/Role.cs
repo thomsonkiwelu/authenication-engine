@@ -1,9 +1,9 @@
-﻿using conservation_backend.Features.Permissions;
-using conservation_backend.Features.Users;
-using conservation_backend.Shared;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using authentication_engine.Features.Permissions;
+using authentication_engine.Features.Users;
+using authentication_engine.Shared.Entities;
 
-namespace conservation_backend.Features.Roles
+namespace authentication_engine.Features.Roles
 {
     public class Role : BaseEntity
     {

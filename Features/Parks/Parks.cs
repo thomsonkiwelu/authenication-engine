@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using conservation_backend.Shared;
+using authentication_engine.Shared.Entities;
 
-namespace conservation_backend.Features.Parks;
+namespace authentication_engine.Features.Parks;
 
 public class Park : BaseEntity
 {

@@ -1,12 +1,10 @@
-﻿using conservation_backend.Config;
-using conservation_backend.Features.Auth.Interfaces;
-using conservation_backend.Features.Departments;
-using conservation_backend.Features.Roles;
-using conservation_backend.Features.Users;
-using conservation_backend.Shared;
+﻿using authentication_engine.Config;
+using authentication_engine.Features.Departments;
+using authentication_engine.Features.Roles;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Data.Seeders
+namespace authentication_engine.Data.Seeders
 {
     public class AuthSeeder : IBaseSeeder
     {

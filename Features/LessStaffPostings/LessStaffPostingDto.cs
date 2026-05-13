@@ -1,6 +1,6 @@
-using conservation_backend.Shared;
+using authentication_engine.Shared;
 
-namespace conservation_backend.Features.LessStaffPostings;
+namespace authentication_engine.Features.LessStaffPostings;
 
 public record LessStaffPostingAssignRequest(
     string StaffId,

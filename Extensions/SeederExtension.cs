@@ -1,8 +1,8 @@
-﻿using conservation_backend.Config;
-using conservation_backend.Data.Seeders;
-using conservation_backend.Shared;
+﻿using authentication_engine.Config;
+using authentication_engine.Data.Seeders;
+using authentication_engine.Shared;
 
-namespace conservation_backend.Extensions
+namespace authentication_engine.Extensions
 {
     public static class SeederExtension
     {

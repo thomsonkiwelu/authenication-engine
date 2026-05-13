@@ -1,8 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using conservation_backend.Features.Users;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using authentication_engine.Features.Users;
 
-namespace conservation_backend.Shared
+namespace authentication_engine.Shared.Entities
 {
     public class BaseEntity
     {

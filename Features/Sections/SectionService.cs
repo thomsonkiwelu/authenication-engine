@@ -1,8 +1,8 @@
-﻿using conservation_backend.Features.Sections.Interfaces;
-using conservation_backend.Shared;
+﻿using authentication_engine.Features.Sections.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
 
-namespace conservation_backend.Features.Sections
+namespace authentication_engine.Features.Sections
 {
     public class SectionService(ISectionRepository repository, IMapper mapper) : ISectionService
     {

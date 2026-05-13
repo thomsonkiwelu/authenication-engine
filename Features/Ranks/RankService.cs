@@ -1,8 +1,8 @@
-﻿using conservation_backend.Features.Ranks.Interfaces;
-using conservation_backend.Shared;
+﻿using authentication_engine.Features.Ranks.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
 
-namespace conservation_backend.Features.Ranks
+namespace authentication_engine.Features.Ranks
 {
     public class RankService(IRankRepository repository, IMapper mapper): IRankService
     {

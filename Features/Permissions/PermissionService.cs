@@ -1,9 +1,8 @@
-﻿using conservation_backend.Features.Permissions.Interfaces;
-using conservation_backend.Shared;
+﻿using authentication_engine.Features.Permissions.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
-using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Features.Permissions
+namespace authentication_engine.Features.Permissions
 {
     public class PermissionService(IPermissionRepository repository, IMapper mapper) : IPermissionService
     {

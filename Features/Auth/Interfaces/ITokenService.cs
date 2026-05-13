@@ -1,8 +1,8 @@
-﻿using conservation_backend.Features.Users;
-using System.Security.Claims;
-using conservation_backend.Features.Staffs;
+﻿using System.Security.Claims;
+using authentication_engine.Features.Staffs;
+using authentication_engine.Features.Users;
 
-namespace conservation_backend.Features.Auth.Interfaces
+namespace authentication_engine.Features.Auth.Interfaces
 {
     public interface ITokenService
     {

@@ -1,10 +1,8 @@
-using conservation_backend.Config;
-using conservation_backend.Features.Staffs.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Features.Staffs.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
-using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Features.Staffs;
+namespace authentication_engine.Features.Staffs;
 
 public class StaffService(IStaffRepository repository, IMapper mapper) : IStaffService
 {

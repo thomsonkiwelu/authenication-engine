@@ -1,4 +1,4 @@
-﻿namespace conservation_backend.Features.Ranks
+﻿namespace authentication_engine.Features.Ranks
 {
     public record RankDto
     {

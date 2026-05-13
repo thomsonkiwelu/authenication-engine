@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace conservation_backend.Features.LessRangerGroups;
+namespace authentication_engine.Features.LessRangerGroups;
 
 public class LessRangerGroupValidator : AbstractValidator<LessRangerGroupRequest>
 {

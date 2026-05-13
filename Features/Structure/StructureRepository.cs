@@ -1,9 +1,9 @@
-﻿using conservation_backend.Config;
-using conservation_backend.Features.Structure.Interfaces;
-using conservation_backend.Shared;
+﻿using authentication_engine.Config;
+using authentication_engine.Features.Structure.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Features.Structure
+namespace authentication_engine.Features.Structure
 {
     public class StructureRepository(AppDBContext context, IUserContext userContext): IStructureRepository
     {

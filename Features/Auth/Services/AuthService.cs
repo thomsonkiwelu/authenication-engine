@@ -1,11 +1,10 @@
-﻿using conservation_backend.Features.Auth.Interfaces;
-using conservation_backend.Features.Staffs.Interfaces;
-using conservation_backend.Features.Users;
-using conservation_backend.Features.Users.Interfaces;
+﻿using authentication_engine.Features.Auth.Interfaces;
+using authentication_engine.Features.Staffs.Interfaces;
+using authentication_engine.Features.Users;
+using authentication_engine.Features.Users.Interfaces;
 using MapsterMapper;
 
-
-namespace conservation_backend.Features.Auth.Services
+namespace authentication_engine.Features.Auth.Services
 {
     public class AuthService(
         IPasswordService passwordService,

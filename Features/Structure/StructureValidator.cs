@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace conservation_backend.Features.Structure
+namespace authentication_engine.Features.Structure
 {
     public class StructureValidator : AbstractValidator<StructureRequest>
     {

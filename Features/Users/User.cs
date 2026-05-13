@@ -1,9 +1,9 @@
-﻿using conservation_backend.Shared;
-using System.ComponentModel.DataAnnotations;
-using conservation_backend.Features.Parks;
-using conservation_backend.Features.Staffs;
+﻿using System.ComponentModel.DataAnnotations;
+using authentication_engine.Features.Parks;
+using authentication_engine.Features.Staffs;
+using authentication_engine.Shared.Entities;
 
-namespace conservation_backend.Features.Users
+namespace authentication_engine.Features.Users
 {
     public class User : BaseEntity
     {

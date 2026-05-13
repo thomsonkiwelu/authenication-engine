@@ -1,9 +1,9 @@
-using conservation_backend.Features.Parks.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Features.Parks.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace conservation_backend.Features.Parks;
+namespace authentication_engine.Features.Parks;
 
 [Authorize]
 [ApiController]

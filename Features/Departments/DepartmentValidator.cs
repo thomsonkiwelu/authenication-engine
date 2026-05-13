@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace conservation_backend.Features.Departments;
+namespace authentication_engine.Features.Departments;
 
 public class DepartmentValidator: AbstractValidator<DepartmentRequest>
 {   

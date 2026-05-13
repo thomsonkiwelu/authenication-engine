@@ -1,8 +1,8 @@
-﻿using conservation_backend.Features.Offices;
-using conservation_backend.Shared;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using authentication_engine.Features.Offices;
+using authentication_engine.Shared.Entities;
 
-namespace conservation_backend.Features.Structure
+namespace authentication_engine.Features.Structure
 {
     public class StructureEntity : BaseEntity
     {

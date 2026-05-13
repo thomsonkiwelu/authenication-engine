@@ -1,9 +1,9 @@
-﻿using conservation_backend.Features.Ranks.Interfaces;
-using conservation_backend.Shared;
+﻿using authentication_engine.Features.Ranks.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace conservation_backend.Features.Ranks
+namespace authentication_engine.Features.Ranks
 {
     [Authorize]
     [ApiController]

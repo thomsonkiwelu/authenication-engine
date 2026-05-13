@@ -1,9 +1,9 @@
-﻿using conservation_backend.Config;
-using conservation_backend.Features.Ranks.Interfaces;
-using conservation_backend.Shared;
+﻿using authentication_engine.Config;
+using authentication_engine.Features.Ranks.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Features.Ranks
+namespace authentication_engine.Features.Ranks
 {
     public class RankRepository(AppDBContext context, IUserContext userContext) : IRankRepository
     {

@@ -1,9 +1,9 @@
-﻿using conservation_backend.Features.Offices;
-using conservation_backend.Features.Structure.Interfaces;
-using conservation_backend.Shared;
+﻿using authentication_engine.Features.Offices;
+using authentication_engine.Features.Structure.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
 
-namespace conservation_backend.Features.Structure
+namespace authentication_engine.Features.Structure
 {
     public class StructureService(IStructureRepository repository, IMapper mapper) : IStructureService
     {

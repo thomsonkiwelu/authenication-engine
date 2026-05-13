@@ -1,12 +1,10 @@
-using conservation_backend.Config;
-using conservation_backend.Features.Departments;
-using conservation_backend.Features.Offices;
-using conservation_backend.Features.Ranks;
-using conservation_backend.Features.Sections;
-using conservation_backend.Features.Staffs;
+using authentication_engine.Config;
+using authentication_engine.Features.Departments;
+using authentication_engine.Features.Sections;
+using authentication_engine.Features.Staffs;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Data.Seeders;
+namespace authentication_engine.Data.Seeders;
 
 public class TanapaHqLessStaffSeeder : IBaseSeeder
 {

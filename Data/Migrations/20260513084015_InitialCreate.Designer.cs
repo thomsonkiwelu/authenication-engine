@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using conservation_backend.Config;
+using authentication_engine.Config;
 
 #nullable disable
 
-namespace conservation_backend.Migrations
+namespace authentication_engine.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20260129113820_CreateFunctionToGetStaffOrganizationContext")]
-    partial class CreateFunctionToGetStaffOrganizationContext
+    [Migration("20260513084015_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace conservation_backend.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("conservation_backend.Features.Auth.RefreshToken", b =>
+            modelBuilder.Entity("authentication_engine.Features.Auth.RefreshToken", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,63 +71,7 @@ namespace conservation_backend.Migrations
                     b.ToTable("RefreshTokens");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Census.Census", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("AdFemale")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("AdMale")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<string>("HabitatDescription")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("JuvFemale")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("JuvMale")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Remark")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("SpeciesName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<int>("SubFemale")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SubMale")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("YoungFemale")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("YoungMale")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Census");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Departments.Department", b =>
+            modelBuilder.Entity("authentication_engine.Features.Departments.Department", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -175,7 +119,7 @@ namespace conservation_backend.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Departments.DepartmentStaff", b =>
+            modelBuilder.Entity("authentication_engine.Features.Departments.DepartmentStaff", b =>
                 {
                     b.Property<Guid>("DepartmentId")
                         .HasColumnType("uuid");
@@ -219,7 +163,7 @@ namespace conservation_backend.Migrations
                     b.ToTable("DepartmentStaffs");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Departments.DepartmentStaffHistory", b =>
+            modelBuilder.Entity("authentication_engine.Features.Departments.DepartmentStaffHistory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -262,163 +206,15 @@ namespace conservation_backend.Migrations
                     b.ToTable("DepartmentStaffHistories");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Fire.AnimalImpact", b =>
+            modelBuilder.Entity("authentication_engine.Features.LessOperationalZones.LessOperationalZone", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("AssessmentMethod")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<Guid>("FireId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("SpeciesName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<string>("TotalNumber")
-                        .IsRequired()
+                    b.Property<string>("Code")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FireId");
-
-                    b.ToTable("AnimalImpacts");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Fire.Fire", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("CloudCover")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Coordinates")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<DateTime>("DateOfBurning")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("DaySinceLastRain")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("DescriptionOfArea")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("EquipmentUsed")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.Property<string>("FuelLoad")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Grass")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<string>("HabitatDescription")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.Property<string>("NumberOfEscapedFires")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Objective")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("PlotSize")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<DateTime>("PreviousBurnDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("PreviousBurnImpact")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Temperature")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("TimeExtinguished")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("TimeOfIgnition")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Topography")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<string>("VegetationMoisture")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<string>("WindSpeedAndDirection")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<string>("Wood")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Fires");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Locations.Location", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -431,8 +227,8 @@ namespace conservation_backend.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
 
                     b.Property<Guid>("ParkId")
                         .HasColumnType("uuid");
@@ -451,17 +247,181 @@ namespace conservation_backend.Migrations
 
                     b.HasIndex("UpdatedBy");
 
-                    b.ToTable("Locations");
+                    b.ToTable("LessOperationalZones");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Offices.Office", b =>
+            modelBuilder.Entity("authentication_engine.Features.LessRangerGroups.LessRangerGroup", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("Code")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("LessRangerStationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("LessRangerStationId");
+
+                    b.HasIndex("UpdatedBy");
+
+                    b.ToTable("LessRangerGroups");
+                });
+
+            modelBuilder.Entity("authentication_engine.Features.LessRangerStations.LessRangerStation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("LessOperationalZoneId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<Guid?>("OfficeId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("LessOperationalZoneId");
+
+                    b.HasIndex("OfficeId");
+
+                    b.HasIndex("UpdatedBy");
+
+                    b.ToTable("LessRangerStations");
+                });
+
+            modelBuilder.Entity("authentication_engine.Features.LessStaffPostings.LessStaffPosting", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("EffectiveFrom")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("EffectiveTo")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("LessOperationalZoneId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("LessRangerGroupId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("LessRangerStationId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("OfficeId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("ParkId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Remarks")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<Guid>("StaffId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("LessOperationalZoneId");
+
+                    b.HasIndex("LessRangerGroupId");
+
+                    b.HasIndex("LessRangerStationId");
+
+                    b.HasIndex("OfficeId");
+
+                    b.HasIndex("ParkId");
+
+                    b.HasIndex("StaffId")
+                        .IsUnique()
+                        .HasFilter("\"EffectiveTo\" IS NULL AND \"DeletedAt\" IS NULL");
+
+                    b.HasIndex("UpdatedBy");
+
+                    b.ToTable("LessStaffPostings");
+                });
+
+            modelBuilder.Entity("authentication_engine.Features.Offices.Office", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Code")
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
@@ -485,6 +445,9 @@ namespace conservation_backend.Migrations
                     b.Property<int>("ParentOffice")
                         .HasColumnType("integer");
 
+                    b.Property<Guid?>("ParkId")
+                        .HasColumnType("uuid");
+
                     b.Property<Guid>("StructureId")
                         .HasColumnType("uuid");
 
@@ -498,6 +461,8 @@ namespace conservation_backend.Migrations
 
                     b.HasIndex("CreatedBy");
 
+                    b.HasIndex("ParkId");
+
                     b.HasIndex("StructureId");
 
                     b.HasIndex("UpdatedBy");
@@ -505,7 +470,7 @@ namespace conservation_backend.Migrations
                     b.ToTable("Offices");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Parks.Park", b =>
+            modelBuilder.Entity("authentication_engine.Features.Parks.Park", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -549,7 +514,7 @@ namespace conservation_backend.Migrations
                     b.ToTable("Parks");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Permissions.PermissionEntity", b =>
+            modelBuilder.Entity("authentication_engine.Features.Permissions.PermissionEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -599,16 +564,21 @@ namespace conservation_backend.Migrations
                     b.ToTable("Permissions");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Ranks.Rank", b =>
+            modelBuilder.Entity("authentication_engine.Features.Ranks.Rank", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -642,7 +612,7 @@ namespace conservation_backend.Migrations
                     b.ToTable("Ranks");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Roles.Role", b =>
+            modelBuilder.Entity("authentication_engine.Features.Roles.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -686,7 +656,7 @@ namespace conservation_backend.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Roles.RolePermission", b =>
+            modelBuilder.Entity("authentication_engine.Features.Roles.RolePermission", b =>
                 {
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uuid");
@@ -725,7 +695,7 @@ namespace conservation_backend.Migrations
                     b.ToTable("RolePermissions");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Roles.RoleUser", b =>
+            modelBuilder.Entity("authentication_engine.Features.Roles.RoleUser", b =>
                 {
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uuid");
@@ -759,7 +729,7 @@ namespace conservation_backend.Migrations
                     b.ToTable("RoleUsers");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Sections.Section", b =>
+            modelBuilder.Entity("authentication_engine.Features.Sections.Section", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -809,50 +779,7 @@ namespace conservation_backend.Migrations
                     b.ToTable("Sections");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Species.Species", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("CommonName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ScientificName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatedBy");
-
-                    b.HasIndex("UpdatedBy");
-
-                    b.ToTable("Species");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Staffs.Staff", b =>
+            modelBuilder.Entity("authentication_engine.Features.Staffs.Staff", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -912,7 +839,55 @@ namespace conservation_backend.Migrations
                     b.ToTable("Staffs");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Structure.StructureEntity", b =>
+            modelBuilder.Entity("authentication_engine.Features.Stations.Station", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<Guid>("ParkId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("ParkId");
+
+                    b.HasIndex("UpdatedBy");
+
+                    b.ToTable("Stations");
+                });
+
+            modelBuilder.Entity("authentication_engine.Features.Structure.StructureEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -950,7 +925,7 @@ namespace conservation_backend.Migrations
                     b.ToTable("Structures");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.SystemModules.SystemModule", b =>
+            modelBuilder.Entity("authentication_engine.Features.SystemModules.SystemModule", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -990,7 +965,7 @@ namespace conservation_backend.Migrations
                     b.ToTable("SystemModules");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Units.Unit", b =>
+            modelBuilder.Entity("authentication_engine.Features.Units.Unit", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -1045,7 +1020,7 @@ namespace conservation_backend.Migrations
                     b.ToTable("Units");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Users.User", b =>
+            modelBuilder.Entity("authentication_engine.Features.Users.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -1098,10 +1073,12 @@ namespace conservation_backend.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Vegetation.DistanceSample", b =>
+            modelBuilder.Entity("authentication_engine.Features.Users.UserPark", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ParkId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
@@ -1113,533 +1090,36 @@ namespace conservation_backend.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("EntityId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("EntityName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("FamilyName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("LeftDistance")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("LongCoordinate")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<string>("RightDistance")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<Guid>("SpeciesId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId", "ParkId");
 
                     b.HasIndex("CreatedBy");
 
-                    b.HasIndex("SpeciesId");
+                    b.HasIndex("ParkId");
 
                     b.HasIndex("UpdatedBy");
 
-                    b.ToTable("DistanceSamples");
+                    b.ToTable("UserParks");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Vegetation.Disturbance", b =>
+            modelBuilder.Entity("authentication_engine.Features.Auth.RefreshToken", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("EntityId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("EntityName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Quantity")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatedBy");
-
-                    b.HasIndex("UpdatedBy");
-
-                    b.ToTable("Disturbances");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Vegetation.LifeForm", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("CanopyClosure")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("CanopyDiameter")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Circumference")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Cover")
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Diameter")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("DiameterAtBreastHeight")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("FamilyName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<string>("Height")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<Guid>("SpeciesId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("StemNumber")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("VegetationId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Weight")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatedBy");
-
-                    b.HasIndex("SpeciesId");
-
-                    b.HasIndex("UpdatedBy");
-
-                    b.HasIndex("VegetationId");
-
-                    b.ToTable("LifeForms");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Vegetation.SpeciesOccurrence", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("EntityId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("EntityName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<Guid>("SpeciesId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatedBy");
-
-                    b.HasIndex("SpeciesId");
-
-                    b.HasIndex("UpdatedBy");
-
-                    b.ToTable("SpeciesOccurrences");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Vegetation.Vegetation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Altitude")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<string>("CommonNumber")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Coordinates")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("EndCoordinate")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<Guid>("LocalNameId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Methodology")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("OtherMethodology")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("PlotId")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("PlotSize")
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<string>("Rainfall")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<string>("Remark")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Session")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<string>("Slope")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("SoilType")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("SpeciesCount")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<Guid?>("SpeciesId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("StartCoordinate")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<string>("Temperature")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("VegetationCategory")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("VegetationType")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("VegetationZone")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatedBy");
-
-                    b.HasIndex("LocalNameId");
-
-                    b.HasIndex("SpeciesId");
-
-                    b.HasIndex("UpdatedBy");
-
-                    b.ToTable("Vegetations");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Wastes.Waste", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
-
-                    b.Property<int>("bioLiquidOil")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("bioLiquidOther")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("bioLiquidRemark")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("bioSolidFoodRemain")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("bioSolidOther")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("bioSolidRemark")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("nonBioLiquidMachineLubricant")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("nonBioLiquidOther")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("nonBioLiquidRemark")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("nonBioSolidGrass")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("nonBioSolidMetal")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("nonBioSolidOther")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("nonBioSolidPaper")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("nonBioSolidPlastic")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("nonBioSolidRemark")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("nonBioSolidRubber")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Wastes");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Water.Water", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Ammonia")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("BodAndCod")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Conductivity")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Depth")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Dissolved")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Nitrate")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Phosphate")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("PotentialOfHydrogen")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Remark")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
-
-                    b.Property<string>("Salinity")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Tds")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Temperature")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Tss")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Turbidity")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Visibility")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Waters");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Auth.RefreshToken", b =>
-                {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "User")
+                    b.HasOne("authentication_engine.Features.Users.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1652,20 +1132,20 @@ namespace conservation_backend.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Departments.Department", b =>
+            modelBuilder.Entity("authentication_engine.Features.Departments.Department", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Offices.Office", "Office")
+                    b.HasOne("authentication_engine.Features.Offices.Office", "Office")
                         .WithMany()
                         .HasForeignKey("OfficeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1677,26 +1157,26 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Departments.DepartmentStaff", b =>
+            modelBuilder.Entity("authentication_engine.Features.Departments.DepartmentStaff", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Offices.Office", "Office")
+                    b.HasOne("authentication_engine.Features.Offices.Office", "Office")
                         .WithMany()
                         .HasForeignKey("OfficeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Staffs.Staff", "Staff")
+                    b.HasOne("authentication_engine.Features.Staffs.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1710,20 +1190,20 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Departments.DepartmentStaffHistory", b =>
+            modelBuilder.Entity("authentication_engine.Features.Departments.DepartmentStaffHistory", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Staffs.Staff", "Staff")
+                    b.HasOne("authentication_engine.Features.Staffs.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1735,31 +1215,20 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Fire.AnimalImpact", b =>
+            modelBuilder.Entity("authentication_engine.Features.LessOperationalZones.LessOperationalZone", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Fire.Fire", "Fire")
-                        .WithMany("ImpactOnAnimal")
-                        .HasForeignKey("FireId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Fire");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Locations.Location", b =>
-                {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Parks.Park", "Park")
+                    b.HasOne("authentication_engine.Features.Parks.Park", "Park")
                         .WithMany()
                         .HasForeignKey("ParkId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1771,39 +1240,154 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Offices.Office", b =>
+            modelBuilder.Entity("authentication_engine.Features.LessRangerGroups.LessRangerGroup", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Structure.StructureEntity", "Structure")
-                        .WithMany("Offices")
-                        .HasForeignKey("StructureId")
+                    b.HasOne("authentication_engine.Features.LessRangerStations.LessRangerStation", "LessRangerStation")
+                        .WithMany()
+                        .HasForeignKey("LessRangerStationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Creator");
+
+                    b.Navigation("LessRangerStation");
+
+                    b.Navigation("Updater");
+                });
+
+            modelBuilder.Entity("authentication_engine.Features.LessRangerStations.LessRangerStation", b =>
+                {
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("authentication_engine.Features.LessOperationalZones.LessOperationalZone", "LessOperationalZone")
+                        .WithMany()
+                        .HasForeignKey("LessOperationalZoneId");
+
+                    b.HasOne("authentication_engine.Features.Offices.Office", "Office")
+                        .WithMany()
+                        .HasForeignKey("OfficeId");
+
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Creator");
+
+                    b.Navigation("LessOperationalZone");
+
+                    b.Navigation("Office");
+
+                    b.Navigation("Updater");
+                });
+
+            modelBuilder.Entity("authentication_engine.Features.LessStaffPostings.LessStaffPosting", b =>
+                {
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("authentication_engine.Features.LessOperationalZones.LessOperationalZone", "LessOperationalZone")
+                        .WithMany()
+                        .HasForeignKey("LessOperationalZoneId");
+
+                    b.HasOne("authentication_engine.Features.LessRangerGroups.LessRangerGroup", "LessRangerGroup")
+                        .WithMany()
+                        .HasForeignKey("LessRangerGroupId");
+
+                    b.HasOne("authentication_engine.Features.LessRangerStations.LessRangerStation", "LessRangerStation")
+                        .WithMany()
+                        .HasForeignKey("LessRangerStationId");
+
+                    b.HasOne("authentication_engine.Features.Offices.Office", "Office")
+                        .WithMany()
+                        .HasForeignKey("OfficeId");
+
+                    b.HasOne("authentication_engine.Features.Parks.Park", "Park")
+                        .WithMany()
+                        .HasForeignKey("ParkId");
+
+                    b.HasOne("authentication_engine.Features.Staffs.Staff", "Staff")
+                        .WithMany()
+                        .HasForeignKey("StaffId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Creator");
+
+                    b.Navigation("LessOperationalZone");
+
+                    b.Navigation("LessRangerGroup");
+
+                    b.Navigation("LessRangerStation");
+
+                    b.Navigation("Office");
+
+                    b.Navigation("Park");
+
+                    b.Navigation("Staff");
+
+                    b.Navigation("Updater");
+                });
+
+            modelBuilder.Entity("authentication_engine.Features.Offices.Office", b =>
+                {
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("authentication_engine.Features.Parks.Park", "Park")
+                        .WithMany()
+                        .HasForeignKey("ParkId");
+
+                    b.HasOne("authentication_engine.Features.Structure.StructureEntity", "Structure")
+                        .WithMany("Offices")
+                        .HasForeignKey("StructureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Creator");
+
+                    b.Navigation("Park");
 
                     b.Navigation("Structure");
 
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Parks.Park", b =>
+            modelBuilder.Entity("authentication_engine.Features.Parks.Park", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1813,20 +1397,20 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Permissions.PermissionEntity", b =>
+            modelBuilder.Entity("authentication_engine.Features.Permissions.PermissionEntity", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.SystemModules.SystemModule", "SystemModule")
+                    b.HasOne("authentication_engine.Features.SystemModules.SystemModule", "SystemModule")
                         .WithMany()
                         .HasForeignKey("SystemModuleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1838,14 +1422,14 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Ranks.Rank", b =>
+            modelBuilder.Entity("authentication_engine.Features.Ranks.Rank", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1855,14 +1439,14 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Roles.Role", b =>
+            modelBuilder.Entity("authentication_engine.Features.Roles.Role", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1872,26 +1456,26 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Roles.RolePermission", b =>
+            modelBuilder.Entity("authentication_engine.Features.Roles.RolePermission", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Permissions.PermissionEntity", "Permission")
+                    b.HasOne("authentication_engine.Features.Permissions.PermissionEntity", "Permission")
                         .WithMany()
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Roles.Role", "Role")
+                    b.HasOne("authentication_engine.Features.Roles.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1905,25 +1489,25 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Roles.RoleUser", b =>
+            modelBuilder.Entity("authentication_engine.Features.Roles.RoleUser", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Roles.Role", "Role")
+                    b.HasOne("authentication_engine.Features.Roles.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "User")
+                    b.HasOne("authentication_engine.Features.Users.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1938,26 +1522,26 @@ namespace conservation_backend.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Sections.Section", b =>
+            modelBuilder.Entity("authentication_engine.Features.Sections.Section", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Departments.Department", "Department")
+                    b.HasOne("authentication_engine.Features.Departments.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Offices.Office", "Office")
+                    b.HasOne("authentication_engine.Features.Offices.Office", "Office")
                         .WithMany()
                         .HasForeignKey("OfficeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1971,37 +1555,20 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Species.Species", b =>
+            modelBuilder.Entity("authentication_engine.Features.Staffs.Staff", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdatedBy")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Creator");
-
-                    b.Navigation("Updater");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Staffs.Staff", b =>
-                {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatedBy")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("conservation_backend.Features.Ranks.Rank", "Rank")
+                    b.HasOne("authentication_engine.Features.Ranks.Rank", "Rank")
                         .WithMany()
                         .HasForeignKey("RankId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -2013,14 +1580,39 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Structure.StructureEntity", b =>
+            modelBuilder.Entity("authentication_engine.Features.Stations.Station", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Parks.Park", "Park")
+                        .WithMany()
+                        .HasForeignKey("ParkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Creator");
+
+                    b.Navigation("Park");
+
+                    b.Navigation("Updater");
+                });
+
+            modelBuilder.Entity("authentication_engine.Features.Structure.StructureEntity", b =>
+                {
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -2030,14 +1622,14 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.SystemModules.SystemModule", b =>
+            modelBuilder.Entity("authentication_engine.Features.SystemModules.SystemModule", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -2047,28 +1639,28 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Units.Unit", b =>
+            modelBuilder.Entity("authentication_engine.Features.Units.Unit", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Departments.Department", "Department")
+                    b.HasOne("authentication_engine.Features.Departments.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId");
 
-                    b.HasOne("conservation_backend.Features.Offices.Office", "Office")
+                    b.HasOne("authentication_engine.Features.Offices.Office", "Office")
                         .WithMany()
                         .HasForeignKey("OfficeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Sections.Section", "Section")
+                    b.HasOne("authentication_engine.Features.Sections.Section", "Section")
                         .WithMany()
                         .HasForeignKey("SectionId");
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -2084,20 +1676,20 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Users.User", b =>
+            modelBuilder.Entity("authentication_engine.Features.Users.User", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Staffs.Staff", "Staff")
+                    b.HasOne("authentication_engine.Features.Staffs.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -2109,143 +1701,40 @@ namespace conservation_backend.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Vegetation.DistanceSample", b =>
+            modelBuilder.Entity("authentication_engine.Features.Users.UserPark", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Species.Species", "Species")
+                    b.HasOne("authentication_engine.Features.Parks.Park", "Park")
                         .WithMany()
-                        .HasForeignKey("SpeciesId")
+                        .HasForeignKey("ParkId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.Navigation("Creator");
-
-                    b.Navigation("Species");
-
-                    b.Navigation("Updater");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Vegetation.Disturbance", b =>
-                {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "User")
                         .WithMany()
-                        .HasForeignKey("CreatedBy")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdatedBy")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Creator");
-
-                    b.Navigation("Updater");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Vegetation.LifeForm", b =>
-                {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatedBy")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("conservation_backend.Features.Species.Species", "Species")
-                        .WithMany()
-                        .HasForeignKey("SpeciesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdatedBy")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("conservation_backend.Features.Vegetation.Vegetation", "Vegetation")
-                        .WithMany()
-                        .HasForeignKey("VegetationId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Creator");
 
-                    b.Navigation("Species");
+                    b.Navigation("Park");
 
                     b.Navigation("Updater");
 
-                    b.Navigation("Vegetation");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Vegetation.SpeciesOccurrence", b =>
-                {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatedBy")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("conservation_backend.Features.Species.Species", "Species")
-                        .WithMany()
-                        .HasForeignKey("SpeciesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdatedBy")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Creator");
-
-                    b.Navigation("Species");
-
-                    b.Navigation("Updater");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Vegetation.Vegetation", b =>
-                {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatedBy")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("conservation_backend.Features.Locations.Location", "Location")
-                        .WithMany()
-                        .HasForeignKey("LocalNameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("conservation_backend.Features.Species.Species", "Species")
-                        .WithMany()
-                        .HasForeignKey("SpeciesId");
-
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
-                        .WithMany()
-                        .HasForeignKey("UpdatedBy")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Creator");
-
-                    b.Navigation("Location");
-
-                    b.Navigation("Species");
-
-                    b.Navigation("Updater");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Fire.Fire", b =>
-                {
-                    b.Navigation("ImpactOnAnimal");
-                });
-
-            modelBuilder.Entity("conservation_backend.Features.Structure.StructureEntity", b =>
+            modelBuilder.Entity("authentication_engine.Features.Structure.StructureEntity", b =>
                 {
                     b.Navigation("Offices");
                 });

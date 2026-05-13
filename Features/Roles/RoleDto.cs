@@ -1,6 +1,6 @@
-﻿using conservation_backend.Features.Permissions;
+﻿using authentication_engine.Features.Permissions;
 
-namespace conservation_backend.Features.Roles
+namespace authentication_engine.Features.Roles
 { 
     public record RoleRequest(
         string Name,

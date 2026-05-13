@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace conservation_backend.Features.Offices;
+namespace authentication_engine.Features.Offices;
 
 public class OfficeValidator: AbstractValidator<OfficeRequest>
 {

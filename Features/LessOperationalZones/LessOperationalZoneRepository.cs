@@ -1,9 +1,9 @@
-using conservation_backend.Config;
-using conservation_backend.Features.LessOperationalZones.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Config;
+using authentication_engine.Features.LessOperationalZones.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Features.LessOperationalZones;
+namespace authentication_engine.Features.LessOperationalZones;
 
 public class LessOperationalZoneRepository(AppDBContext context, IUserContext userContext) : ILessOperationalZoneRepository
 {

@@ -1,4 +1,4 @@
-﻿namespace conservation_backend.Shared
+﻿namespace authentication_engine.Shared
 {
     public record PaginationDto
     {

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using conservation_backend.Shared;
+using authentication_engine.Shared.Entities;
 
-namespace conservation_backend.Features.SystemModules;
+namespace authentication_engine.Features.SystemModules;
 
 public class SystemModule : BaseEntity
 {

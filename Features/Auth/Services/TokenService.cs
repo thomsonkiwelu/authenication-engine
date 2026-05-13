@@ -1,13 +1,13 @@
-﻿using conservation_backend.Features.Auth.Interfaces;
-using conservation_backend.Features.Users;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using conservation_backend.Features.Staffs;
+using authentication_engine.Features.Auth.Interfaces;
+using authentication_engine.Features.Staffs;
+using authentication_engine.Features.Users;
+using Microsoft.IdentityModel.Tokens;
 
-namespace conservation_backend.Features.Auth.Services
+namespace authentication_engine.Features.Auth.Services
 {
     public class TokenService(IConfiguration configuration) : ITokenService
     {

@@ -1,6 +1,6 @@
-using conservation_backend.Shared;
+using authentication_engine.Shared;
 
-namespace conservation_backend.Features.LessStaffPostings.Interfaces;
+namespace authentication_engine.Features.LessStaffPostings.Interfaces;
 
 public interface ILessStaffPostingService
 {

@@ -1,7 +1,7 @@
-﻿using conservation_backend.Features.Offices;
-using conservation_backend.Shared;
+﻿using authentication_engine.Features.Offices;
+using authentication_engine.Shared;
 
-namespace conservation_backend.Features.Departments
+namespace authentication_engine.Features.Departments
 {
     public record DepartmentPaginationDto : PaginationDto
     {

@@ -1,7 +1,6 @@
-﻿using conservation_backend.Features.Offices;
-using conservation_backend.Features.Permissions;
+﻿using authentication_engine.Features.Offices;
 
-namespace conservation_backend.Features.Structure
+namespace authentication_engine.Features.Structure
 {
 
     public record StructureRequest(

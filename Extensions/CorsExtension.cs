@@ -1,5 +1,5 @@
 ﻿
-namespace conservation_backend.Extensions
+namespace authentication_engine.Extensions
 {  
     public static class CorsExtensions
     {

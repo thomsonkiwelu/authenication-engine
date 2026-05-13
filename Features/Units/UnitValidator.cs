@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace conservation_backend.Features.Units;
+namespace authentication_engine.Features.Units;
 
 public class UnitValidator: AbstractValidator<UnitRequest>
 {

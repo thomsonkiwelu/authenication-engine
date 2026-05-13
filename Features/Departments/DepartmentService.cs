@@ -1,9 +1,9 @@
-﻿using conservation_backend.Features.Auth.Interfaces;
-using conservation_backend.Features.Departments.Interfaces;
-using conservation_backend.Shared;
+﻿using authentication_engine.Features.Auth.Interfaces;
+using authentication_engine.Features.Departments.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
 
-namespace conservation_backend.Features.Departments
+namespace authentication_engine.Features.Departments
 {
     public class DepartmentService(IDepartmentRepository repository, IMapper mapper, IPasswordService passwordService) : IDepartmentService
     {

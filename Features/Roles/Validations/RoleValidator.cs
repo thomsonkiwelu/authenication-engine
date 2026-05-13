@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace conservation_backend.Features.Roles.Validations
+namespace authentication_engine.Features.Roles.Validations
 {
     public class RoleValidator: AbstractValidator<RoleRequest>
     {

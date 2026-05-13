@@ -1,9 +1,9 @@
-using conservation_backend.Config;
-using conservation_backend.Features.LessRangerGroups.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Config;
+using authentication_engine.Features.LessRangerGroups.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Features.LessRangerGroups;
+namespace authentication_engine.Features.LessRangerGroups;
 
 public class LessRangerGroupRepository(AppDBContext context, IUserContext userContext) : ILessRangerGroupRepository
 {

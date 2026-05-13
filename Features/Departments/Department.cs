@@ -1,9 +1,9 @@
-﻿using conservation_backend.Features.Offices;
-using conservation_backend.Shared;
-using System.ComponentModel.DataAnnotations;
-using conservation_backend.Features.Staffs;
+﻿using System.ComponentModel.DataAnnotations;
+using authentication_engine.Features.Offices;
+using authentication_engine.Features.Staffs;
+using authentication_engine.Shared.Entities;
 
-namespace conservation_backend.Features.Departments
+namespace authentication_engine.Features.Departments
 {
     public class Department : BaseEntity
     {

@@ -1,9 +1,8 @@
-using conservation_backend.Features.SystemModule.Interfaces;
-using conservation_backend.Features.SystemModules.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Features.SystemModules.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
 
-namespace conservation_backend.Features.SystemModules;
+namespace authentication_engine.Features.SystemModules;
 
 public class SystemModuleService(ISystemModuleRepository repository, IMapper mapper): ISystemModuleService
 {

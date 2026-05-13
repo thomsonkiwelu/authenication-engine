@@ -1,7 +1,7 @@
-﻿using conservation_backend.Features.SystemModules;
-using conservation_backend.Shared;
+﻿using authentication_engine.Features.SystemModules;
+using authentication_engine.Shared;
 
-namespace conservation_backend.Features.Permissions
+namespace authentication_engine.Features.Permissions
 {
     public record PermissionPaginationDto : PaginationDto
     {

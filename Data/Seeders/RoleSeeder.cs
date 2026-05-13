@@ -1,9 +1,9 @@
-﻿using conservation_backend.Config;
-using conservation_backend.Features.Roles;
-using conservation_backend.Shared;
+﻿using authentication_engine.Config;
+using authentication_engine.Features.Roles;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Data.Seeders
+namespace authentication_engine.Data.Seeders
 {
     public class RoleSeeder : IBaseSeeder
     {

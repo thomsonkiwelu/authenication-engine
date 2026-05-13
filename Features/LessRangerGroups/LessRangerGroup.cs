@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using conservation_backend.Features.LessRangerStations;
-using conservation_backend.Shared;
+using authentication_engine.Features.LessRangerStations;
+using authentication_engine.Shared.Entities;
 
-namespace conservation_backend.Features.LessRangerGroups;
+namespace authentication_engine.Features.LessRangerGroups;
 
 public class LessRangerGroup : BaseEntity
 {

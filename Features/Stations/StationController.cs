@@ -1,9 +1,9 @@
-using conservation_backend.Features.Stations.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Features.Stations.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace conservation_backend.Features.Stations;
+namespace authentication_engine.Features.Stations;
 
 [Authorize]
 [ApiController]

@@ -1,9 +1,9 @@
-using conservation_backend.Config;
-using conservation_backend.Features.LessStaffPostings.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Config;
+using authentication_engine.Features.LessStaffPostings.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Features.LessStaffPostings;
+namespace authentication_engine.Features.LessStaffPostings;
 
 public class LessStaffPostingRepository(AppDBContext context, IUserContext userContext) : ILessStaffPostingRepository
 {

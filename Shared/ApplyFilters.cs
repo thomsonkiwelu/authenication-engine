@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Shared
+namespace authentication_engine.Shared
 {
     public class ApplyFilters<T>
     {

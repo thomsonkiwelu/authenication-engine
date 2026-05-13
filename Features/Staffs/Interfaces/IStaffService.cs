@@ -1,6 +1,6 @@
-using conservation_backend.Shared;
+using authentication_engine.Shared;
 
-namespace conservation_backend.Features.Staffs.Interfaces;
+namespace authentication_engine.Features.Staffs.Interfaces;
 
 public interface IStaffService
 {

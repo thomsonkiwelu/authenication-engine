@@ -1,12 +1,12 @@
 ﻿using System.Text.Json;
-using conservation_backend.Config;
-using conservation_backend.Features.Departments.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Config;
+using authentication_engine.Features.Departments.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using NpgsqlTypes;
 
-namespace conservation_backend.Features.Departments
+namespace authentication_engine.Features.Departments
 {
     public class DepartmentRepository(AppDBContext context, IUserContext userContext) : IDepartmentRepository
     {

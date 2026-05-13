@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using conservation_backend.Features.Ranks;
-using conservation_backend.Shared;
+using authentication_engine.Features.Ranks;
+using authentication_engine.Shared.Entities;
 
-namespace conservation_backend.Features.Staffs
+namespace authentication_engine.Features.Staffs
 {
     public class Staff : BaseEntity
     {

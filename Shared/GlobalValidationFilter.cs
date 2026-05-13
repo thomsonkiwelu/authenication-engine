@@ -1,9 +1,7 @@
 ﻿using FluentValidation;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace conservation_backend.Shared
+namespace authentication_engine.Shared
 {
     public class GlobalValidationFilter : IAsyncActionFilter
     {

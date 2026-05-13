@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.Extensions.Hosting;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.IdentityModel.Tokens;
 using Npgsql;
-using System.Diagnostics;
 
-namespace conservation_backend.Shared
+namespace authentication_engine.Shared
 {
     public class GlobalExceptionHandler : IExceptionHandler
     {

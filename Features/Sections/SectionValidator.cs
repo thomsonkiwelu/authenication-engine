@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace conservation_backend.Features.Sections;
+namespace authentication_engine.Features.Sections;
 
 public class SectionValidator: AbstractValidator<SectionRequest>
 {

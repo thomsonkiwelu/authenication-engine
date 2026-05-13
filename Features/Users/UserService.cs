@@ -1,10 +1,8 @@
-using conservation_backend.Features.Sections;
-using conservation_backend.Features.Sections.Interfaces;
-using conservation_backend.Features.Users.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Features.Users.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
 
-namespace conservation_backend.Features.Users;
+namespace authentication_engine.Features.Users;
 
 public class UserService(IUserRepository repository, IMapper mapper) : IUserService
 {

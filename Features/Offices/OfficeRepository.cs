@@ -1,9 +1,9 @@
-﻿using conservation_backend.Config;
-using conservation_backend.Features.Offices.Interface;
-using conservation_backend.Shared;
+﻿using authentication_engine.Config;
+using authentication_engine.Features.Offices.Interface;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Features.Offices
+namespace authentication_engine.Features.Offices
 {
     public class OfficeRepository(AppDBContext context, IUserContext userContext): IOfficeRepository
     {

@@ -1,10 +1,10 @@
 using System.Text.Json;
-using conservation_backend.Config;
-using conservation_backend.Features.Staffs.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Config;
+using authentication_engine.Features.Staffs.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Features.Staffs;
+namespace authentication_engine.Features.Staffs;
 
 public class StaffRepository(AppDBContext context, IUserContext userContext) : IStaffRepository
 {

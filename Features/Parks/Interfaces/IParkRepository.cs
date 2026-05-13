@@ -1,6 +1,6 @@
-using conservation_backend.Shared;
+using authentication_engine.Shared;
 
-namespace conservation_backend.Features.Parks.Interfaces;
+namespace authentication_engine.Features.Parks.Interfaces;
 
 public interface IParkRepository
 {

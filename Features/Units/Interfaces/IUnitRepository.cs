@@ -1,6 +1,6 @@
-﻿using conservation_backend.Shared;
+﻿using authentication_engine.Shared;
 
-namespace conservation_backend.Features.Units.Interfaces
+namespace authentication_engine.Features.Units.Interfaces
 {
     public interface IUnitRepository
     {

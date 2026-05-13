@@ -1,26 +1,26 @@
-﻿using conservation_backend.Features.Auth;
-using conservation_backend.Features.Departments;
-using conservation_backend.Features.LessOperationalZones;
-using conservation_backend.Features.LessRangerGroups;
-using conservation_backend.Features.LessRangerStations;
-using conservation_backend.Features.LessStaffPostings;
-using conservation_backend.Features.Offices;
-using conservation_backend.Features.Parks;
-using conservation_backend.Features.Permissions;
-using conservation_backend.Features.Ranks;
-using conservation_backend.Features.Roles;
-using conservation_backend.Features.Sections;
-using conservation_backend.Features.Staffs;
-using conservation_backend.Features.Stations;
-using conservation_backend.Features.Structure;
-using conservation_backend.Features.SystemModules;
-using conservation_backend.Features.Units;
-using conservation_backend.Features.Users;
-using conservation_backend.Shared;
+﻿using authentication_engine.Features.Auth;
+using authentication_engine.Features.Departments;
+using authentication_engine.Features.LessOperationalZones;
+using authentication_engine.Features.LessRangerGroups;
+using authentication_engine.Features.LessRangerStations;
+using authentication_engine.Features.LessStaffPostings;
+using authentication_engine.Features.Offices;
+using authentication_engine.Features.Parks;
+using authentication_engine.Features.Permissions;
+using authentication_engine.Features.Ranks;
+using authentication_engine.Features.Roles;
+using authentication_engine.Features.Sections;
+using authentication_engine.Features.Staffs;
+using authentication_engine.Features.Stations;
+using authentication_engine.Features.Structure;
+using authentication_engine.Features.SystemModules;
+using authentication_engine.Features.Units;
+using authentication_engine.Features.Users;
+using authentication_engine.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace conservation_backend.Config
+namespace authentication_engine.Config
 {
     public class AppDBContext(DbContextOptions<AppDBContext> options) : DbContext(options)
     {

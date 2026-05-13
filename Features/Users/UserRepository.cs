@@ -1,11 +1,11 @@
-﻿using conservation_backend.Config;
-using conservation_backend.Features.Auth;
-using conservation_backend.Features.Users.Interfaces;
-using conservation_backend.Shared;
+﻿using System.Text.Json;
+using authentication_engine.Config;
+using authentication_engine.Features.Auth;
+using authentication_engine.Features.Users.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
-using System.Text.Json;
 
-namespace conservation_backend.Features.Users
+namespace authentication_engine.Features.Users
 {
     public class UserRepository(AppDBContext context) : IUserRepository
     {

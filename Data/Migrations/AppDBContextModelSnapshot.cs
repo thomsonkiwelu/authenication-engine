@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using conservation_backend.Config;
+using authentication_engine.Config;
 
 #nullable disable
 
-namespace conservation_backend.Data.Migrations
+namespace authentication_engine.Migrations
 {
     [DbContext(typeof(AppDBContext))]
     partial class AppDBContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace conservation_backend.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("conservation_backend.Features.Auth.RefreshToken", b =>
+            modelBuilder.Entity("authentication_engine.Features.Auth.RefreshToken", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,7 +68,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("RefreshTokens");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Departments.Department", b =>
+            modelBuilder.Entity("authentication_engine.Features.Departments.Department", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -116,7 +116,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Departments.DepartmentStaff", b =>
+            modelBuilder.Entity("authentication_engine.Features.Departments.DepartmentStaff", b =>
                 {
                     b.Property<Guid>("DepartmentId")
                         .HasColumnType("uuid");
@@ -160,7 +160,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("DepartmentStaffs");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Departments.DepartmentStaffHistory", b =>
+            modelBuilder.Entity("authentication_engine.Features.Departments.DepartmentStaffHistory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -203,7 +203,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("DepartmentStaffHistories");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.LessOperationalZones.LessOperationalZone", b =>
+            modelBuilder.Entity("authentication_engine.Features.LessOperationalZones.LessOperationalZone", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -247,7 +247,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("LessOperationalZones");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.LessRangerGroups.LessRangerGroup", b =>
+            modelBuilder.Entity("authentication_engine.Features.LessRangerGroups.LessRangerGroup", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -291,7 +291,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("LessRangerGroups");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.LessRangerStations.LessRangerStation", b =>
+            modelBuilder.Entity("authentication_engine.Features.LessRangerStations.LessRangerStation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -340,7 +340,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("LessRangerStations");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.LessStaffPostings.LessStaffPosting", b =>
+            modelBuilder.Entity("authentication_engine.Features.LessStaffPostings.LessStaffPosting", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -412,7 +412,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("LessStaffPostings");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Offices.Office", b =>
+            modelBuilder.Entity("authentication_engine.Features.Offices.Office", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -467,7 +467,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("Offices");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Parks.Park", b =>
+            modelBuilder.Entity("authentication_engine.Features.Parks.Park", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -511,7 +511,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("Parks");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Permissions.PermissionEntity", b =>
+            modelBuilder.Entity("authentication_engine.Features.Permissions.PermissionEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -561,7 +561,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("Permissions");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Ranks.Rank", b =>
+            modelBuilder.Entity("authentication_engine.Features.Ranks.Rank", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -609,7 +609,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("Ranks");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Roles.Role", b =>
+            modelBuilder.Entity("authentication_engine.Features.Roles.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -653,7 +653,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Roles.RolePermission", b =>
+            modelBuilder.Entity("authentication_engine.Features.Roles.RolePermission", b =>
                 {
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uuid");
@@ -692,7 +692,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("RolePermissions");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Roles.RoleUser", b =>
+            modelBuilder.Entity("authentication_engine.Features.Roles.RoleUser", b =>
                 {
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uuid");
@@ -726,7 +726,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("RoleUsers");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Sections.Section", b =>
+            modelBuilder.Entity("authentication_engine.Features.Sections.Section", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -776,7 +776,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("Sections");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Staffs.Staff", b =>
+            modelBuilder.Entity("authentication_engine.Features.Staffs.Staff", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -836,7 +836,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("Staffs");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Stations.Station", b =>
+            modelBuilder.Entity("authentication_engine.Features.Stations.Station", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -884,7 +884,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("Stations");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Structure.StructureEntity", b =>
+            modelBuilder.Entity("authentication_engine.Features.Structure.StructureEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -922,7 +922,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("Structures");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.SystemModules.SystemModule", b =>
+            modelBuilder.Entity("authentication_engine.Features.SystemModules.SystemModule", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -962,7 +962,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("SystemModules");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Units.Unit", b =>
+            modelBuilder.Entity("authentication_engine.Features.Units.Unit", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -1017,7 +1017,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("Units");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Users.User", b =>
+            modelBuilder.Entity("authentication_engine.Features.Users.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -1070,7 +1070,7 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Users.UserPark", b =>
+            modelBuilder.Entity("authentication_engine.Features.Users.UserPark", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -1104,19 +1104,19 @@ namespace conservation_backend.Data.Migrations
                     b.ToTable("UserParks");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Auth.RefreshToken", b =>
+            modelBuilder.Entity("authentication_engine.Features.Auth.RefreshToken", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "User")
+                    b.HasOne("authentication_engine.Features.Users.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1129,20 +1129,20 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Departments.Department", b =>
+            modelBuilder.Entity("authentication_engine.Features.Departments.Department", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Offices.Office", "Office")
+                    b.HasOne("authentication_engine.Features.Offices.Office", "Office")
                         .WithMany()
                         .HasForeignKey("OfficeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1154,26 +1154,26 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Departments.DepartmentStaff", b =>
+            modelBuilder.Entity("authentication_engine.Features.Departments.DepartmentStaff", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Offices.Office", "Office")
+                    b.HasOne("authentication_engine.Features.Offices.Office", "Office")
                         .WithMany()
                         .HasForeignKey("OfficeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Staffs.Staff", "Staff")
+                    b.HasOne("authentication_engine.Features.Staffs.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1187,20 +1187,20 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Departments.DepartmentStaffHistory", b =>
+            modelBuilder.Entity("authentication_engine.Features.Departments.DepartmentStaffHistory", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Staffs.Staff", "Staff")
+                    b.HasOne("authentication_engine.Features.Staffs.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1212,20 +1212,20 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.LessOperationalZones.LessOperationalZone", b =>
+            modelBuilder.Entity("authentication_engine.Features.LessOperationalZones.LessOperationalZone", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Parks.Park", "Park")
+                    b.HasOne("authentication_engine.Features.Parks.Park", "Park")
                         .WithMany()
                         .HasForeignKey("ParkId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1237,20 +1237,20 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.LessRangerGroups.LessRangerGroup", b =>
+            modelBuilder.Entity("authentication_engine.Features.LessRangerGroups.LessRangerGroup", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.LessRangerStations.LessRangerStation", "LessRangerStation")
+                    b.HasOne("authentication_engine.Features.LessRangerStations.LessRangerStation", "LessRangerStation")
                         .WithMany()
                         .HasForeignKey("LessRangerStationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1262,22 +1262,22 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.LessRangerStations.LessRangerStation", b =>
+            modelBuilder.Entity("authentication_engine.Features.LessRangerStations.LessRangerStation", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.LessOperationalZones.LessOperationalZone", "LessOperationalZone")
+                    b.HasOne("authentication_engine.Features.LessOperationalZones.LessOperationalZone", "LessOperationalZone")
                         .WithMany()
                         .HasForeignKey("LessOperationalZoneId");
 
-                    b.HasOne("conservation_backend.Features.Offices.Office", "Office")
+                    b.HasOne("authentication_engine.Features.Offices.Office", "Office")
                         .WithMany()
                         .HasForeignKey("OfficeId");
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1291,40 +1291,40 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.LessStaffPostings.LessStaffPosting", b =>
+            modelBuilder.Entity("authentication_engine.Features.LessStaffPostings.LessStaffPosting", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.LessOperationalZones.LessOperationalZone", "LessOperationalZone")
+                    b.HasOne("authentication_engine.Features.LessOperationalZones.LessOperationalZone", "LessOperationalZone")
                         .WithMany()
                         .HasForeignKey("LessOperationalZoneId");
 
-                    b.HasOne("conservation_backend.Features.LessRangerGroups.LessRangerGroup", "LessRangerGroup")
+                    b.HasOne("authentication_engine.Features.LessRangerGroups.LessRangerGroup", "LessRangerGroup")
                         .WithMany()
                         .HasForeignKey("LessRangerGroupId");
 
-                    b.HasOne("conservation_backend.Features.LessRangerStations.LessRangerStation", "LessRangerStation")
+                    b.HasOne("authentication_engine.Features.LessRangerStations.LessRangerStation", "LessRangerStation")
                         .WithMany()
                         .HasForeignKey("LessRangerStationId");
 
-                    b.HasOne("conservation_backend.Features.Offices.Office", "Office")
+                    b.HasOne("authentication_engine.Features.Offices.Office", "Office")
                         .WithMany()
                         .HasForeignKey("OfficeId");
 
-                    b.HasOne("conservation_backend.Features.Parks.Park", "Park")
+                    b.HasOne("authentication_engine.Features.Parks.Park", "Park")
                         .WithMany()
                         .HasForeignKey("ParkId");
 
-                    b.HasOne("conservation_backend.Features.Staffs.Staff", "Staff")
+                    b.HasOne("authentication_engine.Features.Staffs.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1346,24 +1346,24 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Offices.Office", b =>
+            modelBuilder.Entity("authentication_engine.Features.Offices.Office", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Parks.Park", "Park")
+                    b.HasOne("authentication_engine.Features.Parks.Park", "Park")
                         .WithMany()
                         .HasForeignKey("ParkId");
 
-                    b.HasOne("conservation_backend.Features.Structure.StructureEntity", "Structure")
+                    b.HasOne("authentication_engine.Features.Structure.StructureEntity", "Structure")
                         .WithMany("Offices")
                         .HasForeignKey("StructureId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1377,14 +1377,14 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Parks.Park", b =>
+            modelBuilder.Entity("authentication_engine.Features.Parks.Park", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1394,20 +1394,20 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Permissions.PermissionEntity", b =>
+            modelBuilder.Entity("authentication_engine.Features.Permissions.PermissionEntity", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.SystemModules.SystemModule", "SystemModule")
+                    b.HasOne("authentication_engine.Features.SystemModules.SystemModule", "SystemModule")
                         .WithMany()
                         .HasForeignKey("SystemModuleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1419,14 +1419,14 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Ranks.Rank", b =>
+            modelBuilder.Entity("authentication_engine.Features.Ranks.Rank", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1436,14 +1436,14 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Roles.Role", b =>
+            modelBuilder.Entity("authentication_engine.Features.Roles.Role", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1453,26 +1453,26 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Roles.RolePermission", b =>
+            modelBuilder.Entity("authentication_engine.Features.Roles.RolePermission", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Permissions.PermissionEntity", "Permission")
+                    b.HasOne("authentication_engine.Features.Permissions.PermissionEntity", "Permission")
                         .WithMany()
                         .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Roles.Role", "Role")
+                    b.HasOne("authentication_engine.Features.Roles.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1486,25 +1486,25 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Roles.RoleUser", b =>
+            modelBuilder.Entity("authentication_engine.Features.Roles.RoleUser", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Roles.Role", "Role")
+                    b.HasOne("authentication_engine.Features.Roles.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "User")
+                    b.HasOne("authentication_engine.Features.Users.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1519,26 +1519,26 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Sections.Section", b =>
+            modelBuilder.Entity("authentication_engine.Features.Sections.Section", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Departments.Department", "Department")
+                    b.HasOne("authentication_engine.Features.Departments.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Offices.Office", "Office")
+                    b.HasOne("authentication_engine.Features.Offices.Office", "Office")
                         .WithMany()
                         .HasForeignKey("OfficeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1552,20 +1552,20 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Staffs.Staff", b =>
+            modelBuilder.Entity("authentication_engine.Features.Staffs.Staff", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Ranks.Rank", "Rank")
+                    b.HasOne("authentication_engine.Features.Ranks.Rank", "Rank")
                         .WithMany()
                         .HasForeignKey("RankId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1577,20 +1577,20 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Stations.Station", b =>
+            modelBuilder.Entity("authentication_engine.Features.Stations.Station", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Parks.Park", "Park")
+                    b.HasOne("authentication_engine.Features.Parks.Park", "Park")
                         .WithMany()
                         .HasForeignKey("ParkId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1602,14 +1602,14 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Structure.StructureEntity", b =>
+            modelBuilder.Entity("authentication_engine.Features.Structure.StructureEntity", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1619,14 +1619,14 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.SystemModules.SystemModule", b =>
+            modelBuilder.Entity("authentication_engine.Features.SystemModules.SystemModule", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1636,28 +1636,28 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Units.Unit", b =>
+            modelBuilder.Entity("authentication_engine.Features.Units.Unit", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Departments.Department", "Department")
+                    b.HasOne("authentication_engine.Features.Departments.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId");
 
-                    b.HasOne("conservation_backend.Features.Offices.Office", "Office")
+                    b.HasOne("authentication_engine.Features.Offices.Office", "Office")
                         .WithMany()
                         .HasForeignKey("OfficeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Sections.Section", "Section")
+                    b.HasOne("authentication_engine.Features.Sections.Section", "Section")
                         .WithMany()
                         .HasForeignKey("SectionId");
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1673,20 +1673,20 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Users.User", b =>
+            modelBuilder.Entity("authentication_engine.Features.Users.User", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Staffs.Staff", "Staff")
+                    b.HasOne("authentication_engine.Features.Staffs.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -1698,25 +1698,25 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("Updater");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Users.UserPark", b =>
+            modelBuilder.Entity("authentication_engine.Features.Users.UserPark", b =>
                 {
-                    b.HasOne("conservation_backend.Features.Users.User", "Creator")
+                    b.HasOne("authentication_engine.Features.Users.User", "Creator")
                         .WithMany()
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Parks.Park", "Park")
+                    b.HasOne("authentication_engine.Features.Parks.Park", "Park")
                         .WithMany()
                         .HasForeignKey("ParkId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("conservation_backend.Features.Users.User", "Updater")
+                    b.HasOne("authentication_engine.Features.Users.User", "Updater")
                         .WithMany()
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("conservation_backend.Features.Users.User", "User")
+                    b.HasOne("authentication_engine.Features.Users.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1731,7 +1731,7 @@ namespace conservation_backend.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("conservation_backend.Features.Structure.StructureEntity", b =>
+            modelBuilder.Entity("authentication_engine.Features.Structure.StructureEntity", b =>
                 {
                     b.Navigation("Offices");
                 });

@@ -1,8 +1,8 @@
-using conservation_backend.Features.Parks;
-using conservation_backend.Features.Users;
-using conservation_backend.Shared;
+using authentication_engine.Features.Parks;
+using authentication_engine.Features.Users;
+using authentication_engine.Shared;
 
-namespace conservation_backend.Features.LessOperationalZones;
+namespace authentication_engine.Features.LessOperationalZones;
 
 public record LessOperationalZonePaginationDto : PaginationDto
 {

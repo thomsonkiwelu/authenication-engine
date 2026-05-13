@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace conservation_backend.Features.Auth.Validators
+namespace authentication_engine.Features.Auth.Validators
 {
     public class LoginValidator : AbstractValidator<LoginRequest>
     {

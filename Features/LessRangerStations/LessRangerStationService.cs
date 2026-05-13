@@ -1,8 +1,8 @@
-using conservation_backend.Features.LessRangerStations.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Features.LessRangerStations.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
 
-namespace conservation_backend.Features.LessRangerStations;
+namespace authentication_engine.Features.LessRangerStations;
 
 public class LessRangerStationService(ILessRangerStationRepository repository, IMapper mapper) : ILessRangerStationService
 {

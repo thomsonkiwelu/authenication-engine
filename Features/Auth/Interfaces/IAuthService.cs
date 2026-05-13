@@ -1,7 +1,7 @@
 ﻿
-using conservation_backend.Features.Users;
+using authentication_engine.Features.Users;
 
-namespace conservation_backend.Features.Auth.Interfaces
+namespace authentication_engine.Features.Auth.Interfaces
 {
     public interface IAuthService
     {

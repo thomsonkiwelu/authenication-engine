@@ -1,10 +1,10 @@
-﻿using conservation_backend.Config;
-using conservation_backend.Features.Permissions;
-using conservation_backend.Features.Roles.Interfaces;
-using conservation_backend.Shared;
+﻿using authentication_engine.Config;
+using authentication_engine.Features.Permissions;
+using authentication_engine.Features.Roles.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Features.Roles
+namespace authentication_engine.Features.Roles
 {
     public class RoleRepository(AppDBContext context, IUserContext userContext) : IRoleRepository
     {

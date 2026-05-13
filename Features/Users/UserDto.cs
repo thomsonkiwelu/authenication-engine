@@ -1,12 +1,11 @@
-﻿using conservation_backend.Features.Permissions;
-using conservation_backend.Features.Roles;
-using System.Text.Json.Serialization;
-using conservation_backend.Features.Offices;
-using conservation_backend.Features.Staffs;
-using conservation_backend.Features.SystemModules;
-using conservation_backend.Shared;
+﻿using authentication_engine.Features.Offices;
+using authentication_engine.Features.Permissions;
+using authentication_engine.Features.Roles;
+using authentication_engine.Features.Staffs;
+using authentication_engine.Features.SystemModules;
+using authentication_engine.Shared;
 
-namespace conservation_backend.Features.Users
+namespace authentication_engine.Features.Users
 {
     public record ParkMinimalDto
     {

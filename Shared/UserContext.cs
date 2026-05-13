@@ -1,7 +1,7 @@
 using System.Security.Claims;
-using conservation_backend.Config;
+using authentication_engine.Config;
 
-namespace conservation_backend.Shared;
+namespace authentication_engine.Shared;
 
 public class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContext
 {

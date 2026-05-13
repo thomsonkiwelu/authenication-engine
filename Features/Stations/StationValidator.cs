@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace conservation_backend.Features.Stations;
+namespace authentication_engine.Features.Stations;
 
 public class StationValidator: AbstractValidator<StationRequest>
 {

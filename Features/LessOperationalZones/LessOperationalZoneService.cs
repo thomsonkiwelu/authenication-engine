@@ -1,8 +1,8 @@
-using conservation_backend.Features.LessOperationalZones.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Features.LessOperationalZones.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
 
-namespace conservation_backend.Features.LessOperationalZones;
+namespace authentication_engine.Features.LessOperationalZones;
 
 public class LessOperationalZoneService(ILessOperationalZoneRepository repository, IMapper mapper) : ILessOperationalZoneService
 {

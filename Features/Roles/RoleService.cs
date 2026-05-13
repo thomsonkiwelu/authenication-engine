@@ -1,8 +1,8 @@
-﻿using conservation_backend.Features.Roles.Interfaces;
-using conservation_backend.Shared;
+﻿using authentication_engine.Features.Roles.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
 
-namespace conservation_backend.Features.Roles
+namespace authentication_engine.Features.Roles
 {
     public class RoleService(IRoleRepository repository, IMapper mapper) : IRoleService
     {

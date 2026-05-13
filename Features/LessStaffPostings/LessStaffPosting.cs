@@ -1,13 +1,13 @@
 using System.ComponentModel.DataAnnotations;
-using conservation_backend.Features.LessOperationalZones;
-using conservation_backend.Features.LessRangerGroups;
-using conservation_backend.Features.LessRangerStations;
-using conservation_backend.Features.Offices;
-using conservation_backend.Features.Parks;
-using conservation_backend.Features.Staffs;
-using conservation_backend.Shared;
+using authentication_engine.Features.LessOperationalZones;
+using authentication_engine.Features.LessRangerGroups;
+using authentication_engine.Features.LessRangerStations;
+using authentication_engine.Features.Offices;
+using authentication_engine.Features.Parks;
+using authentication_engine.Features.Staffs;
+using authentication_engine.Shared.Entities;
 
-namespace conservation_backend.Features.LessStaffPostings;
+namespace authentication_engine.Features.LessStaffPostings;
 
 public class LessStaffPosting : BaseEntity
 {

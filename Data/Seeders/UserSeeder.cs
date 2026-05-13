@@ -1,11 +1,10 @@
-﻿using conservation_backend.Config;
-using conservation_backend.Features.Auth.Interfaces;
-using conservation_backend.Features.Staffs;
-using conservation_backend.Features.Users;
-using conservation_backend.Shared;
+﻿using authentication_engine.Config;
+using authentication_engine.Features.Auth.Interfaces;
+using authentication_engine.Features.Users;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Data.Seeders
+namespace authentication_engine.Data.Seeders
 {
     public class UserSeeder(IPasswordService passwordService) : IBaseSeeder
     {

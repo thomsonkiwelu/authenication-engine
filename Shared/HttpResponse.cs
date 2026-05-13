@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace conservation_backend.Shared
+﻿namespace authentication_engine.Shared
 {
     public class ResponseWithPagination<T>
     {

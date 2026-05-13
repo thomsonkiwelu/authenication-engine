@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
 
-namespace conservation_backend.Config;
+namespace authentication_engine.Config;
 
 public class AppDBContextFactory : IDesignTimeDbContextFactory<AppDBContext>
 {

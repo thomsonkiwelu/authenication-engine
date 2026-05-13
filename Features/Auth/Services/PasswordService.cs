@@ -1,7 +1,7 @@
-﻿using BCrypt.Net;
-using conservation_backend.Features.Auth.Interfaces;
+﻿using authentication_engine.Features.Auth.Interfaces;
+using BCrypt.Net;
 
-namespace conservation_backend.Features.Auth.Services
+namespace authentication_engine.Features.Auth.Services
 {
     public class PasswordService : IPasswordService
     {

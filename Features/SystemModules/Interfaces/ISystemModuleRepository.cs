@@ -1,6 +1,6 @@
-using conservation_backend.Shared;
+using authentication_engine.Shared;
 
-namespace conservation_backend.Features.SystemModules.Interfaces;
+namespace authentication_engine.Features.SystemModules.Interfaces;
 
 public interface ISystemModuleRepository
 {

@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
-using conservation_backend.Features.LessOperationalZones;
-using conservation_backend.Features.Offices;
-using conservation_backend.Shared;
+using authentication_engine.Features.LessOperationalZones;
+using authentication_engine.Features.Offices;
+using authentication_engine.Shared.Entities;
 
-namespace conservation_backend.Features.LessRangerStations;
+namespace authentication_engine.Features.LessRangerStations;
 
 public class LessRangerStation : BaseEntity
 {

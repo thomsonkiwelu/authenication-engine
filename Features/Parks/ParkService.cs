@@ -1,8 +1,8 @@
-using conservation_backend.Features.Parks.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Features.Parks.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
 
-namespace conservation_backend.Features.Parks;
+namespace authentication_engine.Features.Parks;
 
 public class ParkService(IParkRepository repository, IMapper mapper) : IParkService
 {

@@ -1,4 +1,4 @@
-﻿namespace conservation_backend.Features.Auth.Interfaces
+﻿namespace authentication_engine.Features.Auth.Interfaces
 {
     public interface IPasswordService
     {

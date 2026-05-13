@@ -1,10 +1,10 @@
 ﻿using System.Text.Json;
-using conservation_backend.Config;
-using conservation_backend.Features.Sections.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Config;
+using authentication_engine.Features.Sections.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Features.Sections
+namespace authentication_engine.Features.Sections
 {
     public class SectionRepository(AppDBContext context, IUserContext userContext) : ISectionRepository
     {

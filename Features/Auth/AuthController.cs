@@ -1,11 +1,11 @@
-﻿using conservation_backend.Features.Auth.Interfaces;
-using conservation_backend.Features.Users;
-using conservation_backend.Shared;
+﻿using System.Security.Claims;
+using authentication_engine.Features.Auth.Interfaces;
+using authentication_engine.Features.Users;
+using authentication_engine.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
-namespace conservation_backend.Features.Auth
+namespace authentication_engine.Features.Auth
 {
     [ApiController]
     [Route("api/auth")]

@@ -1,7 +1,7 @@
-﻿using Microsoft.OpenApi.Models;
-using System.Reflection;
+﻿using System.Reflection;
+using Microsoft.OpenApi.Models;
 
-namespace conservation_backend.Extensions
+namespace authentication_engine.Extensions
 {
     public static class SwaggerExtensions
     {

@@ -1,6 +1,6 @@
-﻿using conservation_backend.Shared;
+﻿using authentication_engine.Shared;
 
-namespace conservation_backend.Extensions
+namespace authentication_engine.Extensions
 {
     public static class LoggerExtension
     {

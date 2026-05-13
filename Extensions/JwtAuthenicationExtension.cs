@@ -1,10 +1,10 @@
-﻿using conservation_backend.Shared;
+﻿using System.Text;
+using System.Text.Json;
+using authentication_engine.Shared;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.Text.Json;
 
-namespace conservation_backend.Extensions
+namespace authentication_engine.Extensions
 {
     public static class JwtAuthenticationExtensions
     {

@@ -1,7 +1,7 @@
-﻿using conservation_backend.Shared;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using authentication_engine.Shared.Entities;
 
-namespace conservation_backend.Features.Permissions
+namespace authentication_engine.Features.Permissions
 {
     public class PermissionEntity : BaseEntity
     {

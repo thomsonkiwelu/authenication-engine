@@ -1,4 +1,4 @@
-namespace conservation_backend.Features.SystemModules;
+namespace authentication_engine.Features.SystemModules;
 
 public record SystemModuleDto()
 {

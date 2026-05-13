@@ -1,13 +1,10 @@
-using conservation_backend.Config;
-using conservation_backend.Features.LessOperationalZones;
-using conservation_backend.Features.LessRangerGroups;
-using conservation_backend.Features.LessRangerStations;
-using conservation_backend.Features.LessStaffPostings.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Config;
+using authentication_engine.Features.LessStaffPostings.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Features.LessStaffPostings;
+namespace authentication_engine.Features.LessStaffPostings;
 
 public class LessStaffPostingService(
     AppDBContext context,

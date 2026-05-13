@@ -1,9 +1,9 @@
-﻿using conservation_backend.Features.Permissions.Interfaces;
-using conservation_backend.Shared;
+﻿using authentication_engine.Features.Permissions.Interfaces;
+using authentication_engine.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace conservation_backend.Features.Permissions
+namespace authentication_engine.Features.Permissions
 {
     [Authorize]
     [ApiController]

@@ -1,11 +1,10 @@
-﻿using conservation_backend.Config;
-using conservation_backend.Features.Permissions;
-using conservation_backend.Features.SystemModules;
-using conservation_backend.Features.Users;
-using conservation_backend.Shared;
+﻿using authentication_engine.Config;
+using authentication_engine.Features.Permissions;
+using authentication_engine.Features.SystemModules;
+using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace conservation_backend.Data.Seeders
+namespace authentication_engine.Data.Seeders
 {
     public class PermissionSeeder : IBaseSeeder
     {

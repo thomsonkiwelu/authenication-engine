@@ -1,8 +1,8 @@
-using conservation_backend.Features.Stations.Interfaces;
-using conservation_backend.Shared;
+using authentication_engine.Features.Stations.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
 
-namespace conservation_backend.Features.Stations;
+namespace authentication_engine.Features.Stations;
 
 public class StationService(IStationRepository repository, IMapper mapper) : IStationService
 {
