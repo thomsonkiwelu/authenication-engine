@@ -203,6 +203,7 @@ namespace authentication_engine.Config
             modelBuilder.Entity<LessRangerGroup>().HasQueryFilter(x => x.DeletedAt == null);
             modelBuilder.Entity<LessStaffPosting>().HasQueryFilter(x => x.DeletedAt == null);
             modelBuilder.Entity<SystemApplication>().HasQueryFilter(x => x.DeletedAt == null);
+            modelBuilder.Entity<SystemModule>().HasQueryFilter(x => x.DeletedAt == null);
 
         }
 

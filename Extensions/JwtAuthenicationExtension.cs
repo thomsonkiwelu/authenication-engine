@@ -57,7 +57,7 @@ namespace authentication_engine.Extensions
 
                             var payload = JsonSerializer.Serialize(new
                             {
-                                message = ResponseMessages.Unauthorized
+                                title = ResponseMessages.Unauthorized
                             });
 
                             return context.Response.WriteAsync(payload);
@@ -69,7 +69,7 @@ namespace authentication_engine.Extensions
 
                             var payload = JsonSerializer.Serialize(new
                             {
-                                message = ResponseMessages.Forbidden
+                                title = ResponseMessages.Forbidden
                             });
 
                             return context.Response.WriteAsync(payload);

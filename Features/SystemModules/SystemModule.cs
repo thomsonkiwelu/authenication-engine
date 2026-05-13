@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using authentication_engine.Features.SystemApplications;
 using authentication_engine.Shared.Entities;
 
 namespace authentication_engine.Features.SystemModules;
@@ -13,4 +14,7 @@ public class SystemModule : BaseEntity
 
     [MaxLength(255)]
     public string Slug { get; set; } = string.Empty;
+    
+    public SystemApplication? SystemApplication { get; set; } = null;
+    public Guid? SystemApplicationId { get; set; }
 }

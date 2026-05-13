@@ -44,7 +44,7 @@ namespace authentication_engine.Features.SystemApplications
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(ResponseWithData<SystemApplicationDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateRank(Guid id, [FromBody] SystemApplicationRequestDto dto)
+        public async Task<IActionResult> Update(Guid id, [FromBody] SystemApplicationRequestDto dto)
         {
             var result = await _systemApplicationService.UpdateSystemApplication(id, dto);
 
@@ -53,7 +53,7 @@ namespace authentication_engine.Features.SystemApplications
 
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(ResponseWithMessage), StatusCodes.Status200OK)]
-        public async Task<IActionResult> DeleteRank(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             await _systemApplicationService.DeleteSystemApplication(id);
 
