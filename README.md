@@ -1,4 +1,4 @@
-﻿# 🌍 Conservation Backend
+﻿# 🌍 Authenication Engine
 
 An ASP.NET Core Web API for managing conservation data such as vegetation, water resources, and wildlife.  
 Built with **.NET 8**, **Entity Framework Core**
@@ -25,5 +25,5 @@ Built with **.NET 8**, **Entity Framework Core**
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/conservation-backend.git
+git clone https://github.com/your-username/authenication-engine.git
 cd conservation-backend
