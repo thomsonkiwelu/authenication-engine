@@ -13,6 +13,7 @@ using authentication_engine.Features.Sections;
 using authentication_engine.Features.Staffs;
 using authentication_engine.Features.Stations;
 using authentication_engine.Features.Structure;
+using authentication_engine.Features.SystemApplications;
 using authentication_engine.Features.SystemModules;
 using authentication_engine.Features.Units;
 using authentication_engine.Features.Users;
@@ -69,6 +70,8 @@ namespace authentication_engine.Config
         public DbSet<LessRangerGroup> LessRangerGroups { get; set; }
         
         public DbSet<LessStaffPosting> LessStaffPostings { get; set; }
+        
+        public DbSet<SystemApplication> SystemApplications { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -199,6 +202,7 @@ namespace authentication_engine.Config
             modelBuilder.Entity<LessRangerStation>().HasQueryFilter(x => x.DeletedAt == null);
             modelBuilder.Entity<LessRangerGroup>().HasQueryFilter(x => x.DeletedAt == null);
             modelBuilder.Entity<LessStaffPosting>().HasQueryFilter(x => x.DeletedAt == null);
+            modelBuilder.Entity<SystemApplication>().HasQueryFilter(x => x.DeletedAt == null);
 
         }
 
