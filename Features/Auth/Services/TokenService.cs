@@ -15,7 +15,7 @@ namespace authentication_engine.Features.Auth.Services
        
         public string GenerateAccessToken(User user, Staff staff)
         {
-            var jwtSettings = _configuration.GetSection("JwtSettings");
+            var jwtSettings = _configuration.GetSection("JwtAuthSettings");
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
@@ -30,7 +30,6 @@ namespace authentication_engine.Features.Auth.Services
 
             // Add roles as claims INFO: Add later
             // claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
-
             var token = new JwtSecurityToken(
                 issuer: jwtSettings["Issuer"],
                 audience: jwtSettings["Audience"],
@@ -57,13 +56,13 @@ namespace authentication_engine.Features.Auth.Services
         //INFO: implement later
         public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
         {
-            var jwtSettings = _configuration.GetSection("JwtSettings");
+            var jwtSettings = _configuration.GetSection("JwtAuthSettings");
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateAudience = false,
                 ValidateIssuer = false,
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]!)),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]!)),
                 ValidateLifetime = false
             };
 

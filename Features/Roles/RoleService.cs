@@ -1,4 +1,5 @@
 ﻿using authentication_engine.Features.Roles.Interfaces;
+using authentication_engine.Features.SystemApplications;
 using authentication_engine.Shared;
 using MapsterMapper;
 
@@ -13,14 +14,9 @@ namespace authentication_engine.Features.Roles
         public async Task<PagedList<RoleResponseDto>> GetAllRolesData(RolePaginationDto dto)
         {
             var pagedData = await _roleRepository.GetPagedData(dto);
-
-            var startIndex = (pagedData.Page - 1) * pagedData.PageSize + 1;
-
-            var dtoList = _mapper.Map<List<RoleResponseDto>>(pagedData.Data)
-                .Select((dto, index) => dto with { RowNumber = startIndex + index }).ToList();
-
+        
             return new PagedList<RoleResponseDto>(
-                items: dtoList,
+                items: pagedData.Data,
                 page: pagedData.Page,
                 pageSize: pagedData.PageSize,
                 totalCount: pagedData.TotalCount
@@ -40,7 +36,7 @@ namespace authentication_engine.Features.Roles
 
         public async Task<RoleWithPermissionsDto> GetRolesById(Guid id)
         {
-            var (role, permissions) = await _roleRepository.GetById(id);
+            var (role, permissions, systemModules) = await _roleRepository.GetById(id);
 
             return new RoleWithPermissionsDto
             {
@@ -48,7 +44,13 @@ namespace authentication_engine.Features.Roles
                 Name = role.Name,
                 Description = role.Description,
                 CreatedAt = role.CreatedAt,
-                Permissions = permissions
+                Permissions = permissions,
+                SystemModules = systemModules,
+                SystemApplication = role.SystemApplication != null ? new SystemApplicationDto
+                {
+                    Id = role.SystemApplication.Id,
+                    Name = role.SystemApplication.Name
+                } : new SystemApplicationDto(),
             };
         }
 

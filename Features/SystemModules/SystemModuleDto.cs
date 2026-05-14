@@ -38,3 +38,10 @@ public record SystemModuleResponseDto: SystemModuleDto
 {
     public int RowNumber { get; set; }
 }
+
+public record SystemModuleMinimalDto()
+{
+    public Guid Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string Slug { get; set; } = string.Empty;
+}

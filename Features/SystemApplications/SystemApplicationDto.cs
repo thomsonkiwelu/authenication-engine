@@ -7,7 +7,7 @@ namespace authentication_engine.Features.SystemApplications
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Url { get; set; } = string.Empty;
-        public string ApiKey { get; set; } = string.Empty;
+        //public string ApiKey { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; } = string.Empty;
         public DateTime? UpdatedAt { get; set; }

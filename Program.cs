@@ -100,9 +100,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//Serve static files
-app.UseStaticFiles();
-
 app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();

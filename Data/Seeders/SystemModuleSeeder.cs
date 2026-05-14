@@ -9,41 +9,42 @@ namespace authentication_engine.Data.Seeders
     {
         public async Task SeedAsync(AppDBContext context)
         {
-            Logger.LogInformation("Seeding System Modules data ...");
-
-            var seedUserId = (await context.Users.FirstOrDefaultAsync(u => u.Username == "thomson.kiwelu")
-                             ?? await context.Users.FirstOrDefaultAsync())
-                ?.Id;
-
-            var requiredModules = new List<(string Name, string Slug)>
+            if (!await context.SystemModules.AnyAsync())
             {
-                ("Ecology", "ecology"),
-                ("Community", "community"),
-                ("Vet", "vet"),
-                ("Setting", "setting"),
-                ("Research", "research"),
-                ("Law Enforcement & Security", "less"),
-            };
+                Logger.LogInformation("Seeding System Modules data ...");
 
-            var existingSlugs = await context.SystemModules
-                .Select(m => m.Slug)
-                .ToListAsync();
+                var seedUserId = (await context.Users.FirstOrDefaultAsync(u => u.Username == "thomson.kiwelu")
+                                 ?? await context.Users.FirstOrDefaultAsync())
+                    ?.Id;
 
-            var missingModules = requiredModules
-                .Where(m => !existingSlugs.Contains(m.Slug))
-                .Select(m => new SystemModule
+                var requiredModules = new List<(string Name, string Slug)>
                 {
-                    Name = m.Name,
-                    Slug = m.Slug,
-                    CreatedBy = seedUserId,
-                    CreatedAt = DateTime.Now,
-                })
-                .ToList();
+                    ("Ecology", "ecology"),
+                    ("Community", "community"),
+                    ("Vet", "vet"),
+                    ("Setting", "setting"),
+                    ("Research", "research"),
+                    ("Law Enforcement Security", "law_enforcement_security"),
+                    ("User Management", "user_management"),
+                };
 
-            if (missingModules.Count > 0)
-            {
-                await context.SystemModules.AddRangeAsync(missingModules);
-                await context.SaveChangesAsync();
+                var existingSlugs = await context.SystemModules
+                    .Select(m => m.Slug)
+                    .ToListAsync();
+
+                var missingModules = requiredModules
+                    .Where(m => !existingSlugs.Contains(m.Slug))
+                    .Select(m => new SystemModule
+                    {
+                        Name = m.Name,
+                        Slug = m.Slug,
+                        CreatedBy = seedUserId,
+                        CreatedAt = DateTime.Now,
+                    })
+                    .ToList();
+                
+                    await context.SystemModules.AddRangeAsync(missingModules);
+                    await context.SaveChangesAsync();
             }
         }
     }

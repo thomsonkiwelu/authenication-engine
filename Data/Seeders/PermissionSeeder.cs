@@ -30,21 +30,25 @@ namespace authentication_engine.Data.Seeders
                 { "Cocoba", "community" },{ "Village_Profile", "community" },
 
                 //LESS permissions
-                { "Less_Operational_Zone", "less" },
-                { "Less_Ranger_Station", "less" },
-                { "Less_Ranger_Group", "less" },
+                { "Less_Operational_Zone", "law_enforcement_security" },
+                { "Less_Ranger_Station", "law_enforcement_security" },
+                { "Less_Ranger_Group", "law_enforcement_security" },
 
                 //LESS Configurations (Setting module)
                 { "Less_Staff_Distribution_Config", "setting" },
                 { "Less_Livestock_Config", "setting" },
                 { "Less_Hwc_Config", "setting" },
                 
-                //Setting permissions
-                { "User", "setting" },{"Permission", "setting"},{"Ranks", "setting"},{"Role", "setting"},{"Structure", "setting"},{"Staffs", "setting"},{"Locations", "setting"},
-                {"Parks", "setting"},{"Waste_stations", "setting"},{"Species", "setting"},{"Less_activity", "setting"},{"Water_bodies", "setting"},{"Weather_stations", "setting"},
+                //Setting in conservation system
+                {"Locations", "setting"},{"Parks", "setting"},{"Waste_stations", "setting"},{"Species", "setting"},{"Less_activity", "setting"},{"Water_bodies", "setting"},
+                {"Weather_stations", "setting"},
+                
+                //User Management system
+                { "User", "user_management" },{"Permission", "user_management"},{"Ranks", "user_management"},{"Role", "user_management"},{"Structure", "user_management"},{"Staffs", "user_management"},
+                {"Application", "user_management"},{"System_Module", "user_management"},
                 
                 //Dashboard permissions
-                { "Less_Dashboard", "less" }, { "Setting_Dashboard", "setting" }, { "Ecology_Dashboard", "ecology" }
+                { "Less_Dashboard", "law_enforcement_security" }, { "Setting_Dashboard", "setting" }, { "Ecology_Dashboard", "ecology" }
             };
 
             var actions = new[] { "view", "create", "update", "delete"};
@@ -56,25 +60,7 @@ namespace authentication_engine.Data.Seeders
                 var systemModule = await context.SystemModules.FirstOrDefaultAsync(m => m.Slug == module);
 
                 if (systemModule is null)
-                {
-                    var moduleName = module switch
-                    {
-                        "less" => "Law Enforcement & Security",
-                        _ => module
-                    };
-
-                    systemModule = new SystemModule
-                    {
-                        Id = Guid.NewGuid(),
-                        Name = moduleName,
-                        Slug = module,
-                        CreatedBy = seedUserId,
-                        CreatedAt = DateTime.UtcNow,
-                    };
-
-                    context.SystemModules.Add(systemModule);
-                    await context.SaveChangesAsync();
-                }
+                    throw new KeyNotFoundException($"System module not found.");
 
                 foreach (var action in actions)
                 {

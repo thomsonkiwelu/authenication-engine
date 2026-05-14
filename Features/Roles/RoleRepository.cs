@@ -1,8 +1,12 @@
-﻿using authentication_engine.Config;
+﻿using System.Text.Json;
+using authentication_engine.Config;
 using authentication_engine.Features.Permissions;
 using authentication_engine.Features.Roles.Interfaces;
+using authentication_engine.Features.SystemModules;
 using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
+using NpgsqlTypes;
 
 namespace authentication_engine.Features.Roles
 {
@@ -11,25 +15,41 @@ namespace authentication_engine.Features.Roles
         private readonly AppDBContext _context = context;
         private readonly IUserContext _userContext = userContext;
 
-        public async Task<PagedList<Role>> GetPagedData(RolePaginationDto dto)
+        public async Task<PagedList<RoleResponseDto>> GetPagedData(RolePaginationDto dto)
         {
-            string[] searchColumns = new string[] { "Name" };
-            var query = _context.Roles
-                .Include(s => s.SystemApplication)
-                .Include(c => c.Creator)
-                .Include(u => u.Updater)
-                .AsNoTracking().AsQueryable();
-
-            //Apply search filter
-            query = ApplyFilters<Role>.ApplySearch(query, dto.q ?? "", searchColumns);
-
-            //Apply sorting filter
-            query = ApplyFilters<Role>.ApplySorting(query, dto.sortBy, dto.sortDesc);
+            var connectionString = _context.Database.GetConnectionString();
+            var parkIds = _userContext.GetAuthorizedParkIds(_context);
+            await using var connection = new NpgsqlConnection(connectionString);
+            await connection.OpenAsync();
+            await using var command = new NpgsqlCommand(
+                "SELECT fn_roles(@page, @pageSize, @search, @systemApplicationId)",
+                connection
+            );
+    
+            // Add parameters with proper null handling
+            command.Parameters.AddWithValue("page", dto.page);
+            command.Parameters.AddWithValue("pageSize", dto.pageSize);
+            command.Parameters.AddWithValue("search", NpgsqlDbType.Varchar, 
+                string.IsNullOrWhiteSpace(dto.q) ? (object)DBNull.Value : dto.q);
+            command.Parameters.AddWithValue("systemApplicationId", NpgsqlDbType.Varchar,
+                string.IsNullOrWhiteSpace(dto.SystemApplicationId) ? (object)DBNull.Value : dto.SystemApplicationId);
             
-            if (!string.IsNullOrWhiteSpace(dto.SystemApplicationId))
-                query = query.Where(v => v.SystemApplicationId == Guid.Parse(dto.SystemApplicationId));
-
-            return await PagedList<Role>.CreateAsync(query, dto.page, dto.pageSize);
+            var jsonResult = await command.ExecuteScalarAsync() as string;
+            if (string.IsNullOrWhiteSpace(jsonResult)) throw new ArgumentNullException("Failure to get roles data");
+        
+            var apiResponse = JsonSerializer.Deserialize<RoleSqlResponseDto>(
+                jsonResult,
+                new JsonSerializerOptions {
+                    PropertyNameCaseInsensitive = true,
+                }
+            );
+    
+            return new PagedList<RoleResponseDto>(
+                apiResponse!.Data,
+                dto.page,
+                dto.pageSize,
+                apiResponse.Meta.TotalItems
+            );
         }
 
         public async Task<Role> Create(Role role)
@@ -43,10 +63,12 @@ namespace authentication_engine.Features.Roles
             return role;
         }
 
-        public async Task<(Role role, List<PermissionMinimalDto> permissions)> 
+        public async Task<(Role role, List<PermissionMinimalDto> permissions, List<SystemModuleMinimalDto> systemModules)>
             GetById(Guid id)
         {
-            var role = await _context.Roles.FindAsync(id);
+            var role = await _context.Roles
+                .Include(sa => sa.SystemApplication)
+                .FirstOrDefaultAsync(s => s.Id == id);
 
             if (role is null)
                 throw new KeyNotFoundException($"Role record not found");
@@ -61,8 +83,22 @@ namespace authentication_engine.Features.Roles
                     Action = rp.Permission.Action
                 })
            .ToListAsync();
+            
+            var systemModules = await (
+                    from sm in _context.SystemModules
+                    join r in _context.Roles on sm.SystemApplicationId equals r.SystemApplicationId
+                    where r.Id == role.Id
+                    select new SystemModuleMinimalDto
+                    {
+                        Id = sm.Id,
+                        Name = sm.Name,
+                        Slug = sm.Slug
+                    }
+                )
+                .OrderBy(sm => sm.Name)
+                .ToListAsync();
 
-            return (role, permissions);
+            return (role, permissions, systemModules);
         }
 
         public async Task<Role> Update(Guid id, Role role)

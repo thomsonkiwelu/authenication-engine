@@ -63,6 +63,7 @@ namespace authentication_engine.Extensions
             services.AddScoped<IBaseSeeder, StructureSeeder>();
             services.AddScoped<IBaseSeeder, OfficeSeeder>();
             services.AddScoped<IBaseSeeder, DepartmentSeeder>();
+            services.AddScoped<IBaseSeeder, SystemApplicationSeeder>();
             //services.AddScoped<IBaseSeeder, UgallaStaffSeeder>();
            // services.AddScoped<IBaseSeeder, TanapaHqLessStaffSeeder>();
             //services.AddScoped<IBaseSeeder, UgallaLessOperationalSeeder>();

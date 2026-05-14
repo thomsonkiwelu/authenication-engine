@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using System.Text.Json;
 using authentication_engine.Shared;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -10,7 +9,7 @@ namespace authentication_engine.Extensions
     {
         public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
-            var jwtSettings = configuration.GetSection("JwtSettings");
+            var jwtSettings = configuration.GetSection("JwtAuthSettings");
 
             var secretKey = jwtSettings["SecretKey"];
             var issuer = jwtSettings["Issuer"];
@@ -19,9 +18,9 @@ namespace authentication_engine.Extensions
             if (string.IsNullOrWhiteSpace(secretKey) || string.IsNullOrWhiteSpace(issuer) || string.IsNullOrWhiteSpace(audience))
             {
                 var missing = new List<string>();
-                if (string.IsNullOrWhiteSpace(secretKey)) missing.Add("JwtSettings:SecretKey");
-                if (string.IsNullOrWhiteSpace(issuer)) missing.Add("JwtSettings:Issuer");
-                if (string.IsNullOrWhiteSpace(audience)) missing.Add("JwtSettings:Audience");
+                if (string.IsNullOrWhiteSpace(secretKey)) missing.Add("JwtAuthSettings:SecretKey");
+                if (string.IsNullOrWhiteSpace(issuer)) missing.Add("JwtAuthSettings:Issuer");
+                if (string.IsNullOrWhiteSpace(audience)) missing.Add("JwtAuthSettings:Audience");
 
                 throw new InvalidOperationException(
                     $"JWT authentication is not configured. Missing configuration values: {string.Join(", ", missing)}. " +
@@ -54,25 +53,15 @@ namespace authentication_engine.Extensions
 
                             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
                             context.Response.ContentType = "application/json";
-
-                            var payload = JsonSerializer.Serialize(new
-                            {
-                                title = ResponseMessages.Unauthorized
-                            });
-
-                            return context.Response.WriteAsync(payload);
+                            
+                            throw new UnauthorizedAccessException(ResponseMessages.Unauthorized);
                         },
                         OnForbidden = context =>
                         {
                             context.Response.StatusCode = StatusCodes.Status403Forbidden;
                             context.Response.ContentType = "application/json";
-
-                            var payload = JsonSerializer.Serialize(new
-                            {
-                                title = ResponseMessages.Forbidden
-                            });
-
-                            return context.Response.WriteAsync(payload);
+                            
+                            throw new UnauthorizedAccessException(ResponseMessages.Forbidden);
                         },
                         OnAuthenticationFailed = context =>
                         {

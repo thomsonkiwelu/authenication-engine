@@ -22,7 +22,7 @@ namespace authentication_engine.Shared
 
             await Results.Problem(
                 title: title,
-                detail: env?.IsDevelopment() == true ? exception.ToString() : null,
+                //detail: env?.IsDevelopment() == true ? exception.ToString() : null,
                 statusCode: statusCode,
                 extensions: new Dictionary<string, object?>
                 {

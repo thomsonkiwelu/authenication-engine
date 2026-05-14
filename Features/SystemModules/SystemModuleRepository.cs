@@ -23,7 +23,7 @@ public class SystemModuleRepository(AppDBContext context, IUserContext userConte
         query = ApplyFilters<SystemModule>.ApplySearch(query, dto.q ?? "", searchColumns);
 
         //Apply sorting filter
-        query = ApplyFilters<SystemModule>.ApplySorting(query, "name", false);
+        query = ApplyFilters<SystemModule>.ApplySorting(query, dto.sortBy, dto.sortDesc);
         
         if (!string.IsNullOrWhiteSpace(dto.SystemApplicationId))
             query = query.Where(v => v.SystemApplicationId == Guid.Parse(dto.SystemApplicationId));
@@ -52,7 +52,6 @@ public class SystemModuleRepository(AppDBContext context, IUserContext userConte
     
     public async Task<SystemModule> Update(Guid id, SystemModule systemModule)
     {
-        Console.WriteLine(systemModule.Slug);
         var rows = await _context.Database.ExecuteSqlInterpolatedAsync($@"
                 UPDATE ""SystemModules""
                 SET ""Name"" = {systemModule.Name}, ""Slug"" = {systemModule.Slug},""UpdatedBy"" = {_userContext.GetUserId()},
