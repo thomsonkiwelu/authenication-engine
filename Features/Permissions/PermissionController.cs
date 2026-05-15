@@ -25,13 +25,13 @@ namespace authentication_engine.Features.Permissions
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(ResponseWithData<PermissionDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResponseWithMessage), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreatePermission([FromBody] PermissionRequest dto)
+        public async Task<IActionResult> CreatePermission([FromBody] PermissionRequestDto dto)
         {
-            var createdPermission = await _permissionService.CreatePermission(dto);
+            await _permissionService.CreatePermission(dto);
 
-            return Ok(ApiHttpResponse.Data(createdPermission));
+            return Ok(ApiHttpResponse.Message(ResponseMessages.Ok));
         }
 
         [HttpGet("{id}")]

@@ -16,13 +16,7 @@ namespace authentication_engine.Features.Permissions
        string SystemModuleId,
        DateTime CreatedAt
     );
-
-    public record PermissionRequest(
-        string Name,
-        string Action,
-        string ModelType
-    );
-        
+    
     public record PermissionResponseDto()
     {
         public Guid Id { get; init; }
@@ -56,6 +50,26 @@ namespace authentication_engine.Features.Permissions
         public string Name { get; init; } = string.Empty;
 
         public string Action { get; init; } = string.Empty;
+    }
+    
+    public record PermissionRequest(
+        string Name,
+        string Action,
+        string ModelType
+    );
+    
+    public record PermissionRequestDto()
+    {
+        public string ModelType { get; set; } = string.Empty;
+        public string SystemModuleId { get; set; } = string.Empty;
+        public List<ActionRequestDto> Permissions { get; set; } = new List<ActionRequestDto>();
+        public Guid CreatedBy { get; set; }
+    }
+    
+    public record ActionRequestDto()
+    {
+        public string Name { get; set; } = string.Empty;
+        public string Action { get; set; } = string.Empty;
     }
 
 }

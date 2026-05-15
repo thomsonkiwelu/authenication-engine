@@ -27,15 +27,9 @@ namespace authentication_engine.Features.Permissions
             );
         }
 
-        public async Task<PermissionDto> CreatePermission(PermissionRequest dto)
+        public async Task<bool> CreatePermission(PermissionRequestDto dto)
         {
-            var permission = _mapper.Map<PermissionEntity>(dto);
-
-            var createdPermission = await _permissionRepository.Create(permission);
-
-            var responseDto = _mapper.Map<PermissionDto>(createdPermission);
-
-            return responseDto;
+            return await _permissionRepository.Create(dto);
         }
 
         public async Task<PermissionDto> GetPermissionById(Guid id)

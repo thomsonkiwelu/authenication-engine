@@ -6,7 +6,7 @@ namespace authentication_engine.Features.Permissions.Interfaces
     {
         Task<PagedList<PermissionResponseDto>> GetAllPermissionsData(PermissionPaginationDto dto);
 
-        Task<PermissionDto> CreatePermission(PermissionRequest dto);
+        Task<bool> CreatePermission(PermissionRequestDto dto);
 
         Task<PermissionDto> GetPermissionById(Guid id);
 

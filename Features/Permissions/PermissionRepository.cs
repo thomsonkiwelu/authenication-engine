@@ -1,7 +1,10 @@
-﻿using authentication_engine.Config;
+﻿using System.Text.Json;
+using authentication_engine.Config;
 using authentication_engine.Features.Permissions.Interfaces;
 using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
+using NpgsqlTypes;
 
 namespace authentication_engine.Features.Permissions
 {
@@ -29,21 +32,22 @@ namespace authentication_engine.Features.Permissions
             return await PagedList<PermissionEntity>.CreateAsync(query, dto.page, dto.pageSize);
         }
 
-        public async Task<PermissionEntity> Create(PermissionEntity permission)
+        public async Task<bool> Create(PermissionRequestDto dto)
         {
-            var permissionModelType = await _context.Permissions.Where(p => p.ModelType == permission.ModelType)
-                    .FirstOrDefaultAsync();
+            dto.CreatedBy = _userContext.GetUserId();
+            var dtoToJson = JsonSerializer.Serialize(dto);
             
-            if (permissionModelType is null)
-                throw new KeyNotFoundException($"Permission model type not found");
+            await using var connection = new NpgsqlConnection(_context.Database.GetConnectionString());
+            await connection.OpenAsync();
+            await using var command = new NpgsqlCommand(
+                "SELECT fn_create_permission(@data::jsonb)",
+                connection
+            );
+            command.Parameters.AddWithValue("data", NpgsqlDbType.Jsonb, dtoToJson);
+            var result = await command.ExecuteScalarAsync();
             
-            permission.CreatedBy = _userContext.GetUserId();
-            permission.SystemModuleId = permissionModelType.SystemModuleId;
-            
-            _context.Permissions.Add(permission);
-            await _context.SaveChangesAsync();
-
-            return permission;
+            if (result is null) return false;
+            return (bool)result;
         }
 
         public async Task<PermissionEntity> GetById(Guid id)
