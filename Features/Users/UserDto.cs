@@ -1,4 +1,5 @@
 ﻿using authentication_engine.Features.Offices;
+using authentication_engine.Features.Parks;
 using authentication_engine.Features.Permissions;
 using authentication_engine.Features.Roles;
 using authentication_engine.Features.Staffs;
@@ -84,9 +85,13 @@ namespace authentication_engine.Features.Users
         
         public List<OptionItemFormat> Roles { get; set; } = new();
         
+        public List<OptionItemFormat> Parks { get; set; } = new();
+        
         public List<RoleResponseDto> AssignedRoles { get; init; } = new List<RoleResponseDto>();
         
         public List<StaffHistoriesData> StaffHistories { get; set; } = new List<StaffHistoriesData>();
+        
+        public List<ParkResponseDto> AssignedParks { get; init; } = new List<ParkResponseDto>();
     }
     
     public record UserMinimalDto

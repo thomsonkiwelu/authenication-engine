@@ -60,4 +60,24 @@ public class ParkController(IParkService parkService) : ControllerBase
         return Ok(ApiHttpResponse.Message(ResponseMessages.Deleted));
     }
     
+    [HttpPost("assign-user")]
+    [ProducesResponseType(typeof(ResponseWithMessage), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> AssignParkToUser([FromBody] AssignParkToUserRequest dto)
+    {
+        await _parkService.AssignParkToUser(dto);
+
+        return Ok(ApiHttpResponse.Message(ResponseMessages.Success));
+    }
+        
+    [HttpPost("unassign-user")]
+    [ProducesResponseType(typeof(ResponseWithMessage), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> UnassignParkToUser([FromBody] AssignParkToUserRequest dto)
+    {
+        await _parkService.UnassignParkToUser(dto);
+
+        return Ok(ApiHttpResponse.Message(ResponseMessages.Success));
+    }
+    
 }

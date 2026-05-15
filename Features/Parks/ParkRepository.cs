@@ -1,5 +1,6 @@
 using authentication_engine.Config;
 using authentication_engine.Features.Parks.Interfaces;
+using authentication_engine.Features.Users;
 using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;
 
@@ -77,6 +78,27 @@ public class ParkRepository(AppDBContext context, IUserContext userContext): IPa
         park.UpdatedAt = DateTime.UtcNow;
          
         await _context.SaveChangesAsync();
+        return true;
+    }
+    
+    public async Task<bool> AssignParkToUser(UserPark userPark)
+    {
+        userPark.CreatedBy = _userContext.GetUserId();
+        _context.UserParks.Add(userPark);
+            
+        await _context.SaveChangesAsync();
+        return true;
+    }
+        
+    public async Task<bool> UnassignParkToUser(UserPark userPark)
+    {
+        var userParkExist = _context.UserParks
+            .Where(rp => rp.ParkId == userPark.ParkId)
+            .Where(rp => rp.UserId == userPark.UserId);
+
+        _context.UserParks.RemoveRange(userParkExist);
+        await _context.SaveChangesAsync();
+            
         return true;
     }
 }

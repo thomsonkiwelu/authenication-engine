@@ -13,4 +13,8 @@ public interface IParkService
     Task<ParkDto> UpdatePark(Guid id, ParkRequest dto);
 
     Task<bool> DeletePark(Guid id);
+
+    Task<bool> UnassignParkToUser(AssignParkToUserRequest dto);
+
+    Task<bool> AssignParkToUser(AssignParkToUserRequest dto);
 }

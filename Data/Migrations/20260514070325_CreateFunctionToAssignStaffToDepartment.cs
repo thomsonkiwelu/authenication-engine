@@ -53,7 +53,7 @@ namespace authentication_engine.Migrations
 							-- UPDATE exists user
 							UPDATE ""Users"" 
 							SET 
-								""IsActive"" = true,
+								""IsActive"" = false,
 								""Password"" = v_password,
 								""UpdatedBy"" = v_created_by,
 								""UpdatedAt"" = NOW()
@@ -66,7 +66,7 @@ namespace authentication_engine.Migrations
 								LOWER(REPLACE(s.""FirstName"" || '.' || s.""LastName"", ' ', '')),
 								LOWER(s.""FirstName"" || '.' || s.""LastName"" || '@tanzaniaparks.co.tz'),
 								v_password,
-								true,
+								false,
 								s.""Id"",
 								v_created_by,
 								NOW()

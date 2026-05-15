@@ -8,10 +8,13 @@ namespace authentication_engine.Features.Staffs
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         
-        [MaxLength(255)]
+        [MaxLength(50)]
         public string FirstName { get; set; } = string.Empty;
+        
+        [MaxLength(50)]
+        public string? MiddleName { get; set; } = string.Empty;
     
-        [MaxLength(255)]
+        [MaxLength(50)]
         public string LastName { get; set; } = string.Empty;
 
         [MaxLength(50)]
@@ -24,8 +27,9 @@ namespace authentication_engine.Features.Staffs
         public string Status { get; set; } = string.Empty;
 
         public Rank Rank { get; set; } = null!;
-        
         public Guid RankId { get; set; }
+        
+        public float? TnpNumber { get; set; }
     }
 
 }

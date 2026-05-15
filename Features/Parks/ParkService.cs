@@ -1,4 +1,5 @@
 using authentication_engine.Features.Parks.Interfaces;
+using authentication_engine.Features.Users;
 using authentication_engine.Shared;
 using MapsterMapper;
 
@@ -55,5 +56,19 @@ public class ParkService(IParkRepository repository, IMapper mapper) : IParkServ
     public async Task<bool> DeletePark(Guid id)
     {
         return await _parkRepository.Delete(id);
+    }
+    
+    public async Task<bool> AssignParkToUser(AssignParkToUserRequest dto)
+    {
+        var roleUser = _mapper.Map<UserPark>(dto);
+            
+        return await _parkRepository.AssignParkToUser(roleUser);
+    }
+        
+    public async Task<bool> UnassignParkToUser(AssignParkToUserRequest dto)
+    {
+        var roleUser = _mapper.Map<UserPark>(dto);
+            
+        return await _parkRepository.UnassignParkToUser(roleUser);
     }
 }
