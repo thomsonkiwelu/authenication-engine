@@ -3,6 +3,7 @@ using authentication_engine.Features.Parks;
 using authentication_engine.Features.Permissions;
 using authentication_engine.Features.Roles;
 using authentication_engine.Features.Staffs;
+using authentication_engine.Features.SystemApplications;
 using authentication_engine.Features.SystemModules;
 using authentication_engine.Shared;
 
@@ -83,6 +84,8 @@ namespace authentication_engine.Features.Users
         
         public List<OptionItemFormat> Units { get; set; } = new();
         
+        public List<OptionItemFormat> SystemApplications { get; set; } = new();
+        
         public List<OptionItemFormat> Roles { get; set; } = new();
         
         public List<OptionItemFormat> Parks { get; set; } = new();
@@ -92,6 +95,8 @@ namespace authentication_engine.Features.Users
         public List<StaffHistoriesData> StaffHistories { get; set; } = new List<StaffHistoriesData>();
         
         public List<ParkResponseDto> AssignedParks { get; init; } = new List<ParkResponseDto>();
+        
+        public List<SystemApplicationResponseDto> AssignedSystemApplications { get; init; } = new List<SystemApplicationResponseDto>();
     }
     
     public record UserMinimalDto
