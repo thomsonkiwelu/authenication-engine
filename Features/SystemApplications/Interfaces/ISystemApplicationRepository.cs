@@ -14,5 +14,9 @@ namespace authentication_engine.Features.SystemApplications.Interfaces
         Task<SystemApplication> Update(Guid id, SystemApplication systemApplication);
 
         Task<bool> Delete(Guid id);
+
+        Task<bool> AssignSystemApplicationToUser(UserSystemApplication userSystemApplication);
+
+        Task<bool> UnassignSystemApplicationToUser(UserSystemApplication userSystemApplication);
     }
 }

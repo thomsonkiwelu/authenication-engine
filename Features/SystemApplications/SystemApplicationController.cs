@@ -59,5 +59,25 @@ namespace authentication_engine.Features.SystemApplications
 
             return Ok(ApiHttpResponse.Message(ResponseMessages.Deleted));
         }
+        
+        [HttpPost("assign-user")]
+        [ProducesResponseType(typeof(ResponseWithMessage), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AssignSystemApplicationToUser([FromBody] AssignSystemApplicationToUserRequest dto)
+        {
+            await _systemApplicationService.AssignSystemApplicationToUser(dto);
+
+            return Ok(ApiHttpResponse.Message(ResponseMessages.Success));
+        }
+        
+        [HttpPost("unassign-user")]
+        [ProducesResponseType(typeof(ResponseWithMessage), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UnassignSystemApplicationToUser([FromBody] AssignSystemApplicationToUserRequest dto)
+        {
+            await _systemApplicationService.UnassignSystemApplicationToUser(dto);
+
+            return Ok(ApiHttpResponse.Message(ResponseMessages.Success));
+        }
     }
 }

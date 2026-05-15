@@ -17,6 +17,7 @@ using authentication_engine.Features.Offices;
 using authentication_engine.Features.Offices.Interface;
 using authentication_engine.Features.Parks;
 using authentication_engine.Features.Parks.Interfaces;
+using authentication_engine.Features.Parks.Validators;
 using authentication_engine.Features.Permissions;
 using authentication_engine.Features.Permissions.Interfaces;
 using authentication_engine.Features.Ranks;
@@ -129,6 +130,7 @@ namespace authentication_engine.Extensions
             services.AddScoped<IValidator<LessOperationalZoneRequest>, LessOperationalZoneValidator>();
             services.AddScoped<IValidator<LessRangerStationRequest>, LessRangerStationValidator>();
             services.AddScoped<IValidator<LessRangerGroupRequest>, LessRangerGroupValidator>();
+            services.AddScoped<IValidator<AssignParkToUserRequest>, AssignParkToUserValidator>();
 
             return services;
         }

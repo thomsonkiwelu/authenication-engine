@@ -75,5 +75,26 @@ namespace authentication_engine.Features.SystemApplications
             await _context.SaveChangesAsync();
             return true;
         }
+        
+        public async Task<bool> AssignSystemApplicationToUser(UserSystemApplication userSystemApplication)
+        {
+            userSystemApplication.CreatedBy = _userContext.GetUserId();
+            _context.UserSystemApplications.Add(userSystemApplication);
+            
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        
+        public async Task<bool> UnassignSystemApplicationToUser(UserSystemApplication userSystemApplication)
+        {
+            var userSystemApplicationExist = _context.UserSystemApplications
+                .Where(rp => rp.SystemApplicationId == userSystemApplication.SystemApplicationId)
+                .Where(rp => rp.UserId == userSystemApplication.UserId);
+
+            _context.UserSystemApplications.RemoveRange(userSystemApplicationExist);
+            await _context.SaveChangesAsync();
+            
+            return true;
+        }
     }
 }

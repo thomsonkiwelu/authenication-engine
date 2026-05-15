@@ -8,7 +8,6 @@ namespace authentication_engine.Features.Parks;
 public class ParkService(IParkRepository repository, IMapper mapper) : IParkService
 {
     private readonly IParkRepository _parkRepository = repository;
-
     private readonly IMapper _mapper = mapper;
     
     public async Task<PagedList<ParkResponseDto>> GetAllParksData(ParkPaginationDto dto)
@@ -60,15 +59,15 @@ public class ParkService(IParkRepository repository, IMapper mapper) : IParkServ
     
     public async Task<bool> AssignParkToUser(AssignParkToUserRequest dto)
     {
-        var roleUser = _mapper.Map<UserPark>(dto);
-            
-        return await _parkRepository.AssignParkToUser(roleUser);
+        var userPark = _mapper.Map<UserPark>(dto);
+       
+        return await _parkRepository.AssignParkToUser(userPark);
     }
         
     public async Task<bool> UnassignParkToUser(AssignParkToUserRequest dto)
     {
-        var roleUser = _mapper.Map<UserPark>(dto);
+        var userPark = _mapper.Map<UserPark>(dto);
             
-        return await _parkRepository.UnassignParkToUser(roleUser);
+        return await _parkRepository.UnassignParkToUser(userPark);
     }
 }

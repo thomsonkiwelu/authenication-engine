@@ -33,9 +33,8 @@ public record ParkResponseDto : ParkDto
     public int RowNumber { get; set; }
 }
 
-public record AssignParkToUserRequest
-{
-    public Guid RoleId { get; set; }
-    public Guid UserId { get; set; }
-    public string CreatedBy { get; set; } = string.Empty;
-}
+public record AssignParkToUserRequest(
+    Guid ParkId,
+    Guid UserId,
+    String? CreatedBy
+);

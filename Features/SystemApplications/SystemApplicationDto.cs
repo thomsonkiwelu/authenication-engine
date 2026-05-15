@@ -31,4 +31,10 @@ namespace authentication_engine.Features.SystemApplications
         public int RowNumber { get; set; }
     }
     
+    public record AssignSystemApplicationToUserRequest(
+        Guid SystemApplicationId,
+        Guid UserId,
+        String? CreatedBy
+    );
+    
 }

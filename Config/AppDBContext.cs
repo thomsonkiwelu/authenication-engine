@@ -73,6 +73,8 @@ namespace authentication_engine.Config
         
         public DbSet<SystemApplication> SystemApplications { get; set; }
         
+        public DbSet<UserSystemApplication> UserSystemApplications { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -178,6 +180,22 @@ namespace authentication_engine.Config
                     .HasForeignKey(p => p.ParkId)
                     .OnDelete(DeleteBehavior.Cascade);
             });
+            
+            //INFO: UserSystemApplication Table Constraints
+            modelBuilder.Entity<UserSystemApplication>(entity =>
+            {
+                entity.HasKey(us => new { us.UserId, us.SystemApplicationId });
+
+                entity.HasOne(u => u.User)
+                    .WithMany()
+                    .HasForeignKey(u => u.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasOne(sa => sa.SystemApplication)
+                    .WithMany()
+                    .HasForeignKey(sa => sa.SystemApplicationId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
 
             //INFO: Apply soft delete filter to each entity
             modelBuilder.Entity<Role>().HasQueryFilter(x => x.DeletedAt == null);
@@ -204,7 +222,7 @@ namespace authentication_engine.Config
             modelBuilder.Entity<LessStaffPosting>().HasQueryFilter(x => x.DeletedAt == null);
             modelBuilder.Entity<SystemApplication>().HasQueryFilter(x => x.DeletedAt == null);
             modelBuilder.Entity<SystemModule>().HasQueryFilter(x => x.DeletedAt == null);
-
+            modelBuilder.Entity<UserSystemApplication>().HasQueryFilter(x => x.DeletedAt == null);
         }
 
     }

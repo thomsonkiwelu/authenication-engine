@@ -62,5 +62,19 @@ namespace authentication_engine.Features.SystemApplications
         {
             return await _systemApplicationRepository.Delete(id);
         }
+        
+        public async Task<bool> AssignSystemApplicationToUser(AssignSystemApplicationToUserRequest dto)
+        {
+            var userSystemApplication = _mapper.Map<UserSystemApplication>(dto);
+            
+            return await _systemApplicationRepository.AssignSystemApplicationToUser(userSystemApplication);
+        }
+        
+        public async Task<bool> UnassignSystemApplicationToUser(AssignSystemApplicationToUserRequest dto)
+        {
+            var userSystemApplication = _mapper.Map<UserSystemApplication>(dto);
+            
+            return await _systemApplicationRepository.UnassignSystemApplicationToUser(userSystemApplication);
+        }
     }
 }
