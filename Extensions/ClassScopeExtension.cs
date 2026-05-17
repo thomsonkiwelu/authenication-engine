@@ -102,6 +102,7 @@ namespace authentication_engine.Extensions
             services.AddScoped<IPasswordService, PasswordService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddSingleton<IEncryptionService, EncryptionService>();
             services.AddScoped<ISystemModuleService, SystemModuleService>();
             services.AddScoped<ISectionService, SectionService>();
             services.AddScoped<IUnitService, UnitService>();

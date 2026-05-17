@@ -39,5 +39,16 @@ namespace authentication_engine.Features.Auth
             
             return Ok(ApiHttpResponse.Data(result));
         }
+        
+        [HttpPost("third-party/verify")]
+        [ProducesResponseType(typeof(ResponseWithData<ThirdPartyVerifyResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResponseWithMessage), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ThirdPartyVerify([FromBody] ThirdPartyVerifyRequest dto)
+        {
+            var result = await _authService.ThirdPartyVerify(dto);
+
+            return Ok(ApiHttpResponse.Data(result));
+        }
     }
 }

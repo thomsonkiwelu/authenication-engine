@@ -8,5 +8,7 @@ namespace authentication_engine.Features.Auth.Interfaces
         Task<AuthResponse> Login(LoginRequest dto);
 
         Task<UserWithAccessControlDto> GetCurrentUser(Guid userId);
+
+        Task<ThirdPartyVerifyResponse> ThirdPartyVerify(ThirdPartyVerifyRequest dto);
     }
 }

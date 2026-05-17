@@ -11,7 +11,8 @@ namespace authentication_engine.Features.Auth.Services
         ITokenService tokenService,
         IUserRepository userRepository,
         IStaffRepository staffRepository,
-        IMapper mapper
+        IMapper mapper,
+        IEncryptionService encryptionService
     ) : IAuthService
     {
         private readonly IUserRepository _userRepository = userRepository;
@@ -19,6 +20,7 @@ namespace authentication_engine.Features.Auth.Services
         private readonly ITokenService _tokenService = tokenService;
         private readonly IMapper _mapper = mapper;
         private readonly IStaffRepository _staffRepository = staffRepository;
+        private readonly IEncryptionService _encryptionService = encryptionService;
 
         public async Task<AuthResponse> Login(LoginRequest dto)
         {
@@ -50,6 +52,15 @@ namespace authentication_engine.Features.Auth.Services
                 throw new KeyNotFoundException($"User with ID {userId} not found");
          
             return result;
+        }
+        
+        public async Task<ThirdPartyVerifyResponse> ThirdPartyVerify(ThirdPartyVerifyRequest dto)
+        {
+            var result = _encryptionService.Encrypt(dto);
+            
+            string decrypted1 = _encryptionService.Decrypt(result);
+            
+            return new ThirdPartyVerifyResponse { Message = result, Decryption =  decrypted1 };
         }
     }
 }
