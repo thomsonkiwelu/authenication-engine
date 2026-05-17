@@ -17,9 +17,15 @@ namespace authentication_engine.Migrations
 				    RETURNS boolean
 				    LANGUAGE 'plpgsql'
 				AS $BODY$
-					 DECLARE
+				    DECLARE
 						v_permission_element JSONB;
+						v_system_application_id uuid;
 					BEGIN
+						-- Get System Application Id
+						SELECT ""SystemApplicationId"" INTO v_system_application_id 
+						FROM ""SystemModules""
+						WHERE ""Id"" = (input_data->>'SystemModuleId')::UUID;
+						
 						-- Insert Permissions Data
 						IF input_data->'Permissions' IS NOT NULL AND jsonb_array_length(input_data->'Permissions') > 0 THEN
 							FOR v_permission_element IN
@@ -32,6 +38,7 @@ namespace authentication_engine.Migrations
 										""Action"",
 										""ModelType"",
 										""SystemModuleId"",
+										""SystemApplicationId"",
 										""CreatedBy"",
 										""CreatedAt""
 									) VALUES (
@@ -40,6 +47,7 @@ namespace authentication_engine.Migrations
 										v_permission_element->>'Action',
 										input_data->>'ModelType',
 										(input_data->>'SystemModuleId')::UUID,
+										v_system_application_id,
 										(input_data->>'CreatedBy')::UUID,
 										NOW()
 									);
@@ -56,7 +64,7 @@ namespace authentication_engine.Migrations
 					EXCEPTION
 						WHEN OTHERS THEN
 							RAISE EXCEPTION 'Error in fn_create_permission: %', SQLERRM;
-					END;
+					END;			
 				$BODY$;
             ");
         }

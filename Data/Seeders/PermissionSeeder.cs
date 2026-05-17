@@ -77,6 +77,7 @@ namespace authentication_engine.Data.Seeders
                             Name = permissionName,
                             Action = action,
                             SystemModuleId = systemModule.Id,
+                            SystemApplicationId =  systemModule.SystemApplicationId,
                             ModelType = model.Replace("_", " "),
                             CreatedBy = seedUserId,
                             CreatedAt = DateTime.UtcNow

@@ -17,34 +17,42 @@ namespace authentication_engine.Data.Seeders
                                  ?? await context.Users.FirstOrDefaultAsync())
                     ?.Id;
 
-                var requiredModules = new List<(string Name, string Slug)>
+                var requiredModules = new List<(string Name, string Slug, string ApplicationSlugName)>
                 {
-                    ("Ecology", "ecology"),
-                    ("Community", "community"),
-                    ("Vet", "vet"),
-                    ("Setting", "setting"),
-                    ("Research", "research"),
-                    ("Law Enforcement Security", "law_enforcement_security"),
-                    ("User Management", "user_management"),
+                    ("Ecology", "ecology", "conservation-system"),
+                    ("Community", "community", "conservation-system"),
+                    ("Vet", "vet", "conservation-system"),
+                    ("Setting", "setting", "conservation-system"),
+                    ("Research", "research", "conservation-system"),
+                    ("Law Enforcement Security", "law_enforcement_security", "conservation-system"),
+                    ("User Management", "user_management", "authentication-engine"),
                 };
 
-                var existingSlugs = await context.SystemModules
-                    .Select(m => m.Slug)
-                    .ToListAsync();
+                foreach (var module in requiredModules)
+                {
+                    var systemApplication = await context.SystemApplications.FirstOrDefaultAsync(u => u.Slug == module.ApplicationSlugName);
+                    if (systemApplication is null)
+                        throw new KeyNotFoundException($"System application not found.");
+                    
+                    var existingModule = await context.SystemModules
+                        .FirstOrDefaultAsync(m => m.Slug == module.Slug);
 
-                var missingModules = requiredModules
-                    .Where(m => !existingSlugs.Contains(m.Slug))
-                    .Select(m => new SystemModule
+                    if (existingModule == null)
                     {
-                        Name = m.Name,
-                        Slug = m.Slug,
-                        CreatedBy = seedUserId,
-                        CreatedAt = DateTime.Now,
-                    })
-                    .ToList();
-                
-                    await context.SystemModules.AddRangeAsync(missingModules);
-                    await context.SaveChangesAsync();
+                        var systemModule = new SystemModule
+                        {
+                            Name = module.Name,
+                            Slug = module.Slug,
+                            SystemApplicationId = systemApplication.Id,
+                            CreatedBy = seedUserId,
+                            CreatedAt = DateTime.Now,
+                        };
+        
+                        await context.SystemModules.AddAsync(systemModule);
+                    }
+                }
+
+                await context.SaveChangesAsync();
             }
         }
     }

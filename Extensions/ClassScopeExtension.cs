@@ -57,6 +57,7 @@ namespace authentication_engine.Extensions
             services.AddScoped<IBaseSeeder, RankSeeder>();
             services.AddScoped<IBaseSeeder, StaffSeeder>();
             services.AddScoped<IBaseSeeder, UserSeeder>();
+            services.AddScoped<IBaseSeeder, SystemApplicationSeeder>();
             services.AddScoped<IBaseSeeder, SystemModuleSeeder>();
             services.AddScoped<IBaseSeeder, PermissionSeeder>();
             services.AddScoped<IBaseSeeder, RoleSeeder>();
@@ -64,7 +65,6 @@ namespace authentication_engine.Extensions
             services.AddScoped<IBaseSeeder, StructureSeeder>();
             services.AddScoped<IBaseSeeder, OfficeSeeder>();
             services.AddScoped<IBaseSeeder, DepartmentSeeder>();
-            services.AddScoped<IBaseSeeder, SystemApplicationSeeder>();
             //services.AddScoped<IBaseSeeder, UgallaStaffSeeder>();
            // services.AddScoped<IBaseSeeder, TanapaHqLessStaffSeeder>();
             //services.AddScoped<IBaseSeeder, UgallaLessOperationalSeeder>();

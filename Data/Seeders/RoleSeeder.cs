@@ -14,6 +14,10 @@ namespace authentication_engine.Data.Seeders
             var seedUserId = (await context.Users.FirstOrDefaultAsync(u => u.Username == "thomson.kiwelu")
                              ?? await context.Users.FirstOrDefaultAsync())
                 ?.Id;
+            
+            var systemApplication = await context.SystemApplications.FirstOrDefaultAsync(u => u.Slug == "authentication-engine");
+            if (systemApplication is null)
+                throw new KeyNotFoundException($"System application not found.");
 
             var role = await context.Roles.FirstOrDefaultAsync(u => u.Name == "Super Administrator");
 
@@ -24,6 +28,7 @@ namespace authentication_engine.Data.Seeders
                     Id = Guid.NewGuid(),
                     Name = "Super Administrator",
                     Description = "Manage all users in application",
+                    SystemApplicationId = systemApplication.Id,
                     CreatedBy = seedUserId,
                     CreatedAt = DateTime.Now
                 };

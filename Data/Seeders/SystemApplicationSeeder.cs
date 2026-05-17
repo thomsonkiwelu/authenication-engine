@@ -16,7 +16,7 @@ namespace authentication_engine.Data.Seeders
                 var user = await context.Users.FirstOrDefaultAsync(u => u.Username == "thomson.kiwelu");
                 
                 if (user is null)
-                    throw new KeyNotFoundException($"User not found for name.");
+                    throw new KeyNotFoundException($"User not found.");
                 
                 await context.SystemApplications.AddRangeAsync(
                     new SystemApplication
@@ -24,6 +24,14 @@ namespace authentication_engine.Data.Seeders
                         Id = Guid.NewGuid(),
                         Name = "Authentication Engine",
                         Slug = "authentication-engine",
+                        CreatedAt = DateTime.Now,
+                        CreatedBy = user.Id
+                    },
+                    new SystemApplication
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Conservation System",
+                        Slug = "conservation-system",
                         CreatedAt = DateTime.Now,
                         CreatedBy = user.Id
                     }

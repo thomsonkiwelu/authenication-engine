@@ -51,12 +51,16 @@ namespace authentication_engine.Data.Seeders
                     { 
                         UserId = user.Id,
                         RoleId = role.Id,
+                        CreatedBy = user.Id,
+                        CreatedAt = DateTime.Now
                     });
                     
                     context.UserSystemApplications.Add(new UserSystemApplication
                     { 
                         UserId = user.Id,
-                        SystemApplicationId = systemApplication.Id
+                        SystemApplicationId = systemApplication.Id,
+                        CreatedBy = user.Id,
+                        CreatedAt = DateTime.Now
                     });
                 }
                 await context.SaveChangesAsync();
