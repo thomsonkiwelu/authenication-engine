@@ -11,8 +11,8 @@ namespace authentication_engine.Features.SystemApplications
         [MaxLength(255)]
         public string Name { get; set; } = string.Empty;
 
-        [MaxLength(255)]
-        public string Url { get; set; } = string.Empty;
+        [MaxLength(150)]
+        public string Slug { get; set; } = string.Empty;
         
         public string ApiKey { get; set; } = string.Empty;
     }

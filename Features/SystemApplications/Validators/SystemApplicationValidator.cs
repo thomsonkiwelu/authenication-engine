@@ -10,9 +10,9 @@ namespace authentication_engine.Features.SystemApplications
                 .NotEmpty()
                 .WithMessage("Name cannot be empty.");
             
-            RuleFor(x => x.Url)
+            RuleFor(x => x.Slug)
                 .NotEmpty()
-                .WithMessage("Url cannot be empty.");
+                .WithMessage("Slug cannot be empty.");
             
             RuleFor(x => x.ApiKey)
                 .NotEmpty()

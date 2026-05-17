@@ -50,7 +50,7 @@ namespace authentication_engine.Features.SystemApplications
         {
             var rows = await _context.Database.ExecuteSqlInterpolatedAsync($@"
                 UPDATE ""SystemApplications""
-                SET ""Name"" = {systemApplication.Name}, ""Url"" = {systemApplication.Url},""UpdatedBy"" = {_userContext.GetUserId()},
+                SET ""Name"" = {systemApplication.Name}, ""Slug"" = {systemApplication.Slug},""UpdatedBy"" = {_userContext.GetUserId()},
                 ""ApiKey"" = {systemApplication.ApiKey}, ""UpdatedAt"" = {DateTime.UtcNow} WHERE ""Id"" = {id};
             ");
             

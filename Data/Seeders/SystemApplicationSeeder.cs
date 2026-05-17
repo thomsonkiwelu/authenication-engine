@@ -24,7 +24,7 @@ namespace authentication_engine.Data.Seeders
                     {
                         Id = Guid.NewGuid(),
                         Name = "Authentication Engine",
-                        Url = "https://www.example.com::5000",
+                        Slug = "authentication-engine",
                         CreatedAt = DateTime.Now,
                         CreatedBy = user.Id
                     }

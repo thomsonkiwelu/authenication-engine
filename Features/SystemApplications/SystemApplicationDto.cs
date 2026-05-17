@@ -6,7 +6,7 @@ namespace authentication_engine.Features.SystemApplications
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string Url { get; set; } = string.Empty;
+        public string Slug { get; set; } = string.Empty;
         //public string ApiKey { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; } = string.Empty;
@@ -20,7 +20,7 @@ namespace authentication_engine.Features.SystemApplications
     public record SystemApplicationRequestDto
     {
         public string Name { get; set; } = string.Empty;
-        public string Url { get; set; } = string.Empty;
+        public string Slug { get; set; } = string.Empty;
         public string ApiKey { get; set; } = string.Empty;
         public Guid CreatedBy { get; set; }
         public Guid? UpdatedBy { get; set; }
