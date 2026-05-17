@@ -29,17 +29,19 @@ namespace authentication_engine.Features.Users
 
     public record UserWithAccessControlDto : UserDto
     {
-        public List<SystemModuleDto> Modules { get; set; } = new List<SystemModuleDto>();
+        public List<SystemModuleMinimalDto> Modules { get; set; } = new List<SystemModuleMinimalDto>();
 
-        public List<RoleDto> Roles { get; set; } = new List<RoleDto>();
+        public List<RoleMinimalDto> Roles { get; set; } = new List<RoleMinimalDto>();
 
         public List<PermissionMinimalDto> Permissions { get; set; } = new List<PermissionMinimalDto>();
         
         public OfficeDto Office { get; set; } = new OfficeDto();
 
-        public ParkMinimalDto? AssignedPark { get; set; }
+        public ParkMinimalDto? AssignedPark { get; set; } = new ParkMinimalDto();
 
         public List<ParkMinimalDto> AccessibleParks { get; set; } = new List<ParkMinimalDto>();
+        
+        public SystemApplicationMinimalDto SystemApplication { get; set; } = new SystemApplicationMinimalDto();
     }
 
     public record UserResponseDto : UserDto

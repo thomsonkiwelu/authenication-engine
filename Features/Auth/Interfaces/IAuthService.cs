@@ -6,8 +6,7 @@ namespace authentication_engine.Features.Auth.Interfaces
     public interface IAuthService
     {
         Task<AuthResponse> Login(LoginRequest dto);
-
-        Task<UserWithAccessControlDto> GetCurrentUser(Guid userId);
+        
 
         Task<ThirdPartyVerifyResponse> ThirdPartyVerify(ThirdPartyVerifyRequest dto);
     }

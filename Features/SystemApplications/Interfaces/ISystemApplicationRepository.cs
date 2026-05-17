@@ -18,5 +18,7 @@ namespace authentication_engine.Features.SystemApplications.Interfaces
         Task<bool> AssignSystemApplicationToUser(UserSystemApplication userSystemApplication);
 
         Task<bool> UnassignSystemApplicationToUser(UserSystemApplication userSystemApplication);
+        
+        Task<SystemApplication?> GetSystemApplicationIfUserHasAccess(string slugName,  Guid userId);
     }
 }

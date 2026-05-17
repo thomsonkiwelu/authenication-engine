@@ -96,5 +96,20 @@ namespace authentication_engine.Features.SystemApplications
             
             return true;
         }
+        
+        public async Task<SystemApplication?> GetSystemApplicationIfUserHasAccess(string slugName, Guid userId)
+        {
+            var systemApplication = await _context.SystemApplications
+                .FirstOrDefaultAsync(u => u.Slug == slugName.Trim());
+
+            if (systemApplication == null) return null;
+            
+            var userSystemApplication = await _context.UserSystemApplications
+                .FirstOrDefaultAsync(u => u.UserId == userId && u.SystemApplicationId == systemApplication.Id);
+            
+            if (userSystemApplication == null) return null;
+
+            return systemApplication;
+        }
     }
 }

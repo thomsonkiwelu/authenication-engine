@@ -58,10 +58,10 @@ namespace authentication_engine.Features.Users
             throw new NotImplementedException();
         }
 
-        public async Task<User?> GetUserByUsername(LoginRequest dto)
+        public async Task<User?> GetUserByUsername(string username)
         {
             var user = await _context.Users
-                 .FirstOrDefaultAsync(u => u.Username == dto.Username && u.IsActive);
+                 .FirstOrDefaultAsync(u => u.Username == username && u.IsActive);
 
             if (user == null)
                 return null;
@@ -69,61 +69,21 @@ namespace authentication_engine.Features.Users
             return user;
         }
 
-        public async Task<UserWithAccessControlDto?> GetUserByIdWithAccessControl(Guid Id)
+        public async Task<UserWithAccessControlDto?> GetUserAccessControl(Guid userId, Guid systemApplicationId)
         {
-            var dataSql = "SELECT * FROM FUN_GET_USER_BY_ID_WITH_ACCESS_CONTROL({0})";
-
-            var results = await _context.Database.SqlQueryRaw<string>(dataSql, Id)
+            var dataSql = "SELECT * FROM fun_get_user_access_data({0},{1})";
+            var results = await _context.Database.SqlQueryRaw<string>(dataSql, userId, systemApplicationId)
                 .ToListAsync();
 
             var jsonString = results.FirstOrDefault();
-
-            if (string.IsNullOrEmpty(jsonString) || jsonString == "{}")
-                return null;
+            if (string.IsNullOrEmpty(jsonString) || jsonString == "{}") return null;
 
             var result = JsonSerializer.Deserialize<UserWithAccessControlDto>(
                 jsonString,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
             );
 
-            if (result is null)
-                return null;
-
-            // Assigned park is derived from the user's office's ParkId
-            if (result.Office.ParkId.HasValue)
-            {
-                var park = await _context.Parks
-                    .AsNoTracking()
-                    .Where(p => p.Id == result.Office.ParkId.Value)
-                    .Select(p => new ParkMinimalDto
-                    {
-                        Id = p.Id,
-                        Name = p.Name,
-                        Code = p.Code ?? string.Empty,
-                        Zone = p.Zone
-                    })
-                    .FirstOrDefaultAsync();
-
-                result.AssignedPark = park;
-            }
-
-            // Accessible parks are taken from UserParks
-            result.AccessibleParks = await _context.UserParks
-                .AsNoTracking()
-                .Where(up => up.UserId == Id)
-                .Join(
-                    _context.Parks.AsNoTracking(),
-                    up => up.ParkId,
-                    p => p.Id,
-                    (up, p) => new ParkMinimalDto
-                    {
-                        Id = p.Id,
-                        Name = p.Name,
-                        Code = p.Code ?? string.Empty,
-                        Zone = p.Zone
-                    }
-                )
-                .ToListAsync();
+            if (result is null) return null;
 
             return result;
         }

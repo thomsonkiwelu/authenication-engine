@@ -15,8 +15,8 @@ namespace authentication_engine.Features.Users.Interfaces
 
         Task<bool> Delete(Guid id);
 
-        Task<User?> GetUserByUsername(LoginRequest dto);
+        Task<User?> GetUserByUsername(string username);
 
-        Task<UserWithAccessControlDto?> GetUserByIdWithAccessControl(Guid Id);
+        Task<UserWithAccessControlDto?> GetUserAccessControl(Guid userId, Guid systemApplicationId);
     }
 }

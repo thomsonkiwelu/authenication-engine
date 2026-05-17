@@ -9,7 +9,7 @@ namespace authentication_engine.Extensions
     {
         public static IServiceCollection AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
-            var jwtSettings = configuration.GetSection("JwtAuthSettings");
+            var jwtSettings = configuration.GetSection("JwtSettings");
 
             var secretKey = jwtSettings["SecretKey"];
             var issuer = jwtSettings["Issuer"];
@@ -18,9 +18,9 @@ namespace authentication_engine.Extensions
             if (string.IsNullOrWhiteSpace(secretKey) || string.IsNullOrWhiteSpace(issuer) || string.IsNullOrWhiteSpace(audience))
             {
                 var missing = new List<string>();
-                if (string.IsNullOrWhiteSpace(secretKey)) missing.Add("JwtAuthSettings:SecretKey");
-                if (string.IsNullOrWhiteSpace(issuer)) missing.Add("JwtAuthSettings:Issuer");
-                if (string.IsNullOrWhiteSpace(audience)) missing.Add("JwtAuthSettings:Audience");
+                if (string.IsNullOrWhiteSpace(secretKey)) missing.Add("JwtSettings:SecretKey");
+                if (string.IsNullOrWhiteSpace(issuer)) missing.Add("JwtSettings:Issuer");
+                if (string.IsNullOrWhiteSpace(audience)) missing.Add("JwtSettings:Audience");
 
                 throw new InvalidOperationException(
                     $"JWT authentication is not configured. Missing configuration values: {string.Join(", ", missing)}. " +

@@ -11,9 +11,7 @@ namespace authentication_engine.Features.Auth
     {
         public string AccessToken { get; init; } = string.Empty;
 
-        //public string RefreshToken { get; init; } = string.Empty;
-
-        public UserDto? User { get; set; }
+        public UserDto? User { get; set; } = new UserDto();
     }
     
     public record ThirdPartyVerifyRequest
@@ -25,7 +23,8 @@ namespace authentication_engine.Features.Auth
     
     public record ThirdPartyVerifyResponse
     {
-        public string Message { get; init; } = string.Empty;
-        public string Decryption { get; init; } = string.Empty;
+        public string Message { get; set; } = string.Empty;
+        
+        public UserWithAccessControlDto? Result { get; set; } = new UserWithAccessControlDto();
     }
 }

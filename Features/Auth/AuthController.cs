@@ -23,22 +23,6 @@ namespace authentication_engine.Features.Auth
 
             return Ok(ApiHttpResponse.Data(result));
         }
-
-        [Authorize]
-        [HttpGet("me")]
-        [ProducesResponseType(typeof(ResponseWithData<UserWithAccessControlDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ResponseWithMessage), StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetCurrentUser()
-        {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (userId is null)
-                throw new UnauthorizedAccessException(ResponseMessages.Unauthorized);
-
-            var result = await _authService.GetCurrentUser(Guid.Parse(userId));
-            
-            return Ok(ApiHttpResponse.Data(result));
-        }
         
         [HttpPost("third-party/verify")]
         [ProducesResponseType(typeof(ResponseWithData<ThirdPartyVerifyResponse>), StatusCodes.Status200OK)]

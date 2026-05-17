@@ -35,7 +35,7 @@ public record StaffDto
     
     public string Status { get; set; } = string.Empty;
     
-    public float TnpNumber { get; set; }
+    public float? TnpNumber { get; set; }
     
     public Guid RankId { get; set; }
         

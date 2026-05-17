@@ -1,7 +1,9 @@
 ﻿using authentication_engine.Features.Auth.Interfaces;
 using authentication_engine.Features.Staffs.Interfaces;
+using authentication_engine.Features.SystemApplications.Interfaces;
 using authentication_engine.Features.Users;
 using authentication_engine.Features.Users.Interfaces;
+using authentication_engine.Shared;
 using MapsterMapper;
 
 namespace authentication_engine.Features.Auth.Services
@@ -11,26 +13,34 @@ namespace authentication_engine.Features.Auth.Services
         ITokenService tokenService,
         IUserRepository userRepository,
         IStaffRepository staffRepository,
-        IMapper mapper,
-        IEncryptionService encryptionService
+        IEncryptionService encryptionService,
+        ISystemApplicationRepository systemApplicationRepository,
+        IConfiguration configuration
     ) : IAuthService
     {
         private readonly IUserRepository _userRepository = userRepository;
         private readonly IPasswordService _passwordService = passwordService;
         private readonly ITokenService _tokenService = tokenService;
-        private readonly IMapper _mapper = mapper;
         private readonly IStaffRepository _staffRepository = staffRepository;
         private readonly IEncryptionService _encryptionService = encryptionService;
+        private readonly ISystemApplicationRepository _systemApplicationRepository = systemApplicationRepository;
+        private readonly IConfiguration _configuration = configuration;
 
         public async Task<AuthResponse> Login(LoginRequest dto)
         {
-            var user = await _userRepository.GetUserByUsername(dto);
+            var user = await _userRepository.GetUserByUsername(dto.Username);
             if (user == null || !_passwordService.VerifyPassword(dto.Password, user.Password))
-                throw new UnauthorizedAccessException("Invalid username or password");
+                throw new UnauthorizedAccessException(ResponseMessages.InvalidCredential);
+            
+            string? grantType = _configuration["AuthSetting:GrandType"];
+            if (string.IsNullOrEmpty(grantType)) throw new KeyNotFoundException(ResponseMessages.GrantTypeNotConfigured);
+            
+            var systemApplication = await _systemApplicationRepository.GetSystemApplicationIfUserHasAccess(grantType, user.Id);
+            if (systemApplication == null) throw new UnauthorizedAccessException(ResponseMessages.ApplicationAuthentication);
             
             var staff = await _staffRepository.GetById(user.StaffId);
             var accessToken = _tokenService.GenerateAccessToken(user, staff);
-
+            
             return new AuthResponse
             {
                 AccessToken = accessToken,
@@ -43,24 +53,21 @@ namespace authentication_engine.Features.Auth.Services
                 }
             };
         }
-
-        public async Task<UserWithAccessControlDto> GetCurrentUser(Guid userId)
-        {
-            var result = await _userRepository.GetUserByIdWithAccessControl(userId);
-
-            if (result == null)
-                throw new KeyNotFoundException($"User with ID {userId} not found");
-         
-            return result;
-        }
         
         public async Task<ThirdPartyVerifyResponse> ThirdPartyVerify(ThirdPartyVerifyRequest dto)
         {
-            var result = _encryptionService.Encrypt(dto);
+            var user = await _userRepository.GetUserByUsername(dto.Username);
+            if (user == null || !_passwordService.VerifyPassword(dto.Password, user.Password))
+                throw new UnauthorizedAccessException(ResponseMessages.InvalidCredential);
             
-            string decrypted1 = _encryptionService.Decrypt(result);
+            var systemApplication = await _systemApplicationRepository.GetSystemApplicationIfUserHasAccess(dto.GrantType, user.Id);
+            if (systemApplication == null)
+                throw new UnauthorizedAccessException(ResponseMessages.ApplicationAuthentication);
             
-            return new ThirdPartyVerifyResponse { Message = result, Decryption =  decrypted1 };
+            var result = await _userRepository.GetUserAccessControl(user.Id, systemApplication.Id);
+            var encryptMessage = _encryptionService.Encrypt(result!);
+            
+            return new ThirdPartyVerifyResponse { Message = encryptMessage, Result = result };
         }
     }
 }

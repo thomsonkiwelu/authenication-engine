@@ -58,6 +58,9 @@
         public const string Forbidden = "Sorry, You don't have permission to access this resource";
         public const string Error = "Unable to complete your request due to system error. Please contact support if this continues";
         public const string DatabaseError = "Something went wrong while accessing the database. Please contact support if this continues.";
+        public const string ApplicationAuthentication = "The request could not be authenticated. You don't have permission to access this application. Please contact your administrator to get access to the system.";
+        public const string InvalidCredential = "Invalid username or password";
+        public const string GrantTypeNotConfigured = "Unable to process login: Grant type configuration is missing. Please contact support team";
     }
 
     public static class ApiHttpResponse

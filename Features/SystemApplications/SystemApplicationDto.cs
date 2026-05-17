@@ -37,4 +37,14 @@ namespace authentication_engine.Features.SystemApplications
         String? CreatedBy
     );
     
+    public record SystemApplicationMinimalDto
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Slug { get; set; } = string.Empty;
+        //public string ApiKey { get; set; } = string.Empty;
+        public DateTime CreatedAt { get; set; }
+        public string CreatedBy { get; set; } = string.Empty;
+    }
+    
 }

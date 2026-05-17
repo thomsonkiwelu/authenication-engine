@@ -15,7 +15,7 @@ namespace authentication_engine.Features.Auth.Services
        
         public string GenerateAccessToken(User user, Staff staff)
         {
-            var jwtSettings = _configuration.GetSection("JwtAuthSettings");
+            var jwtSettings = _configuration.GetSection("JwtSettings");
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
@@ -56,7 +56,7 @@ namespace authentication_engine.Features.Auth.Services
         //INFO: implement later
         public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
         {
-            var jwtSettings = _configuration.GetSection("JwtAuthSettings");
+            var jwtSettings = _configuration.GetSection("JwtSettings");
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateAudience = false,

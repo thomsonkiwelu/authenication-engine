@@ -1,5 +1,4 @@
 ﻿using authentication_engine.Config;
-using authentication_engine.Features.Structure;
 using authentication_engine.Features.SystemApplications;
 using authentication_engine.Shared;
 using Microsoft.EntityFrameworkCore;

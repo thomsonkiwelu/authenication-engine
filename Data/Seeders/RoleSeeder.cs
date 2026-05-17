@@ -15,14 +15,14 @@ namespace authentication_engine.Data.Seeders
                              ?? await context.Users.FirstOrDefaultAsync())
                 ?.Id;
 
-            var role = await context.Roles.FirstOrDefaultAsync(u => u.Name == "Super Administrators");
+            var role = await context.Roles.FirstOrDefaultAsync(u => u.Name == "Super Administrator");
 
             if (role is null)
             {
                 role = new Role
                 {
                     Id = Guid.NewGuid(),
-                    Name = "Super Administrators",
+                    Name = "Super Administrator",
                     Description = "Manage all users in application",
                     CreatedBy = seedUserId,
                     CreatedAt = DateTime.Now
